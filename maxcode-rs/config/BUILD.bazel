@@ -1,0 +1,7 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "config",
+    compile_data = ["defaults.toml"],
+    crate_name = "maxcode_config",
+)

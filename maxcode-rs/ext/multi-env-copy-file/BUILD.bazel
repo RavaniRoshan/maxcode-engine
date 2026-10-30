@@ -1,0 +1,17 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "multi-env-copy-file",
+    crate_name = "maxcode_multi_env_copy_file",
+    extra_binaries = [
+        "//maxcode-rs/bwrap:bwrap",
+        "//maxcode-rs/code-mode-host:maxcode-code-mode-host",
+        "//maxcode-rs/linux-sandbox:maxcode-linux-sandbox",
+        "//maxcode-rs/cli:maxcode",
+        "//maxcode-rs/windows-sandbox-rs:maxcode-command-runner",
+        "//maxcode-rs/windows-sandbox-rs:maxcode-windows-managed-deny-probe",
+        "//maxcode-rs/windows-sandbox-rs:maxcode-windows-sandbox-setup",
+    ],
+    run_tests_with_wine_exec = True,
+    test_tags = ["no-sandbox"],
+)

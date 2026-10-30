@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "history-notes",
+    crate_name = "maxcode_history_notes_extension",
+)

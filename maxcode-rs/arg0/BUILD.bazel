@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "arg0",
+    crate_name = "maxcode_arg0",
+)

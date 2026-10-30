@@ -1,0 +1,46 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-model-provider"
+version.workspace = true
+
+[lib]
+doctest = false
+name = "maxcode_model_provider"
+path = "src/lib.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-utils-process = { workspace = true }
+chrono = { workspace = true }
+maxcode-api = { workspace = true }
+maxcode-agent-identity = { workspace = true }
+maxcode-aws-auth = { workspace = true }
+maxcode-http-client = { workspace = true }
+maxcode-feedback = { workspace = true }
+maxcode-login = { workspace = true }
+maxcode-keyring-store = { workspace = true }
+maxcode-model-provider-info = { workspace = true }
+maxcode-models-manager = { workspace = true }
+maxcode-otel = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-response-debug-context = { workspace = true }
+maxcode-secrets = { workspace = true }
+http = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+tokio = { workspace = true, features = ["io-util", "process", "sync", "time"] }
+tracing = { workspace = true, features = ["log"] }
+url = { workspace = true }
+
+[dev-dependencies]
+base64 = { workspace = true }
+maxcode-utils-cargo-bin = { workspace = true }
+maxcode-utils-redacted-string = { workspace = true }
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt"] }
+wiremock = { workspace = true }

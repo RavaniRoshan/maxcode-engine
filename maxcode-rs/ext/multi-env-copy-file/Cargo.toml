@@ -1,0 +1,36 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-multi-env-copy-file"
+version.workspace = true
+
+[lib]
+test = false
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-extension-api = { workspace = true }
+maxcode-tools = { workspace = true }
+maxcode-utils-path-uri = { workspace = true }
+futures = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+[dev-dependencies]
+anyhow = { workspace = true }
+maxcode-config = { workspace = true }
+maxcode-core = { workspace = true }
+maxcode-exec-server = { workspace = true }
+maxcode-features = { workspace = true }
+maxcode-models-manager = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+core_test_support = { workspace = true }
+insta = { workspace = true, features = ["json", "filters"] }
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+test-case = "3.3.1"
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }

@@ -1,0 +1,43 @@
+[package]
+name = "maxcode-external-agent-migration"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+doctest = false
+name = "maxcode_external_agent_migration"
+path = "src/lib.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+chrono = { workspace = true }
+maxcode-analytics = { workspace = true }
+maxcode-config = { workspace = true }
+maxcode-core = { workspace = true }
+maxcode-core-plugins = { workspace = true }
+maxcode-hooks = { workspace = true }
+maxcode-login = { workspace = true }
+maxcode-memories-write = { workspace = true }
+maxcode-otel = { workspace = true }
+maxcode-plugin = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-rollout = { workspace = true }
+maxcode-thread-store = { workspace = true }
+maxcode-utils-output-truncation = { workspace = true }
+linkify = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+serde_yaml = { workspace = true }
+sha2 = { workspace = true }
+toml = { workspace = true }
+tokio = { workspace = true, features = ["rt", "sync"] }
+tracing = { workspace = true }
+
+[dev-dependencies]
+maxcode-app-server-protocol = { workspace = true }
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }

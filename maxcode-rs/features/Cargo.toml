@@ -1,0 +1,25 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-features"
+version.workspace = true
+
+[lib]
+doctest = false
+name = "maxcode_features"
+path = "src/lib.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-network-proxy = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-utils-redacted-string = { workspace = true }
+schemars = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+toml = { workspace = true }
+tracing = { workspace = true, features = ["log"] }
+
+[dev-dependencies]
+pretty_assertions = { workspace = true }

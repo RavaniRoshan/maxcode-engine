@@ -1,0 +1,52 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-skills-extension"
+version.workspace = true
+
+[lib]
+name = "maxcode_skills_extension"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+blake3 = { workspace = true }
+maxcode-analytics = { workspace = true }
+maxcode-config = { workspace = true }
+maxcode-exec-server = { workspace = true }
+maxcode-extension-api = { workspace = true }
+maxcode-mcp = { workspace = true }
+maxcode-otel = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-skills = { workspace = true }
+maxcode-tools = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-path-uri = { workspace = true }
+maxcode-utils-plugins = { workspace = true }
+maxcode-utils-string = { workspace = true }
+dirs = { workspace = true }
+futures = { workspace = true }
+schemars = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+tokio = { workspace = true, features = ["rt", "sync", "time"] }
+toml = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+assert_matches = { workspace = true }
+maxcode-attachment-store = { workspace = true }
+maxcode-core-plugin-common = { workspace = true }
+maxcode-models-manager = { workspace = true }
+maxcode-protocol-test-support = { workspace = true }
+maxcode-utils-cargo-bin = { workspace = true }
+dunce = { workspace = true }
+insta = { workspace = true }
+opentelemetry_sdk = { workspace = true }
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread", "test-util"] }
+tracing-subscriber = { workspace = true }

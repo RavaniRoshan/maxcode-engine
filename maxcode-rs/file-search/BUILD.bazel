@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "file-search",
+    crate_name = "maxcode_file_search",
+)

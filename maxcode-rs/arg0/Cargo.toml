@@ -1,0 +1,36 @@
+[package]
+name = "maxcode-arg0"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "maxcode_arg0"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+maxcode-apply-patch = { workspace = true }
+maxcode-async-utils = { workspace = true }
+maxcode-exec-server = { workspace = true }
+maxcode-install-context = { workspace = true }
+maxcode-linux-sandbox = { workspace = true }
+maxcode-sandboxing = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-home-dir = { workspace = true }
+maxcode-utils-pty = { workspace = true }
+dotenvy = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["rt-multi-thread"] }
+
+[target.'cfg(windows)'.dependencies]
+maxcode-windows-sandbox = { workspace = true }
+pathdiff = { workspace = true }
+
+[dev-dependencies]
+maxcode-utils-cargo-bin = { workspace = true }
+pretty_assertions = { workspace = true }

@@ -1,0 +1,24 @@
+[package]
+name = "maxcode-file-system"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+bytes = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-path-uri = { workspace = true }
+futures = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+tokio = { workspace = true, features = ["rt", "sync"] }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+rustix = { workspace = true, features = ["fs"] }
+
+[lib]
+test = false
+doctest = false

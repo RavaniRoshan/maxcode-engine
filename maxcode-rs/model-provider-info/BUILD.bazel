@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "model-provider-info",
+    crate_name = "maxcode_model_provider_info",
+)

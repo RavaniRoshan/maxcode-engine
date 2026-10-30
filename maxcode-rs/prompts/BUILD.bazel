@@ -1,0 +1,7 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "prompts",
+    compile_data = glob(["templates/**"]),
+    crate_name = "maxcode_prompts",
+)

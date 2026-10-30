@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "guardian-v3",
+    crate_name = "maxcode_guardian_v3",
+)

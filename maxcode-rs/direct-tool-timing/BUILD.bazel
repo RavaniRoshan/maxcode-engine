@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "direct-tool-timing",
+    crate_name = "maxcode_direct_tool_timing",
+)

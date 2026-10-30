@@ -1,0 +1,43 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-image-generation-extension"
+version.workspace = true
+
+[lib]
+name = "maxcode_image_generation_extension"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+base64 = { workspace = true }
+maxcode-api = { workspace = true }
+maxcode-attachment-store = { workspace = true }
+maxcode-core = { workspace = true }
+maxcode-exec-server = { workspace = true }
+maxcode-extension-api = { workspace = true }
+maxcode-extension-items = { workspace = true }
+maxcode-http-client = { workspace = true }
+maxcode-login = { workspace = true }
+maxcode-model-provider = { workspace = true }
+maxcode-model-provider-info = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-tools = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-image = { workspace = true }
+maxcode-utils-path-uri = { workspace = true }
+http = { workspace = true }
+schemars = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+image = { workspace = true, features = ["png"] }
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }

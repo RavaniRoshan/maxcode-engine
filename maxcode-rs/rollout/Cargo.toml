@@ -1,0 +1,60 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-rollout"
+version.workspace = true
+
+[lib]
+doctest = false
+name = "maxcode_rollout"
+path = "src/lib.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-utils-process = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true, features = ["serde"] }
+maxcode-extension-items = { workspace = true }
+maxcode-file-search = { workspace = true }
+maxcode-git-utils = { workspace = true }
+maxcode-history = { workspace = true }
+maxcode-otel = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-state = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-output-truncation = { workspace = true }
+maxcode-utils-path = { workspace = true }
+maxcode-utils-string = { workspace = true }
+futures = { workspace = true, features = ["alloc"] }
+memchr = { workspace = true }
+regex = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+tempfile = { workspace = true }
+time = { workspace = true, features = [
+    "formatting",
+    "local-offset",
+    "macros",
+    "parsing",
+] }
+tokio = { workspace = true, features = [
+    "fs",
+    "io-util",
+    "macros",
+    "process",
+    "rt",
+    "sync",
+    "time",
+] }
+tracing = { workspace = true }
+uuid = { workspace = true }
+zstd = { workspace = true }
+
+[target.'cfg(unix)'.dependencies]
+libc = { workspace = true }
+
+[dev-dependencies]
+maxcode-utils-absolute-path = { workspace = true }
+pretty_assertions = { workspace = true }

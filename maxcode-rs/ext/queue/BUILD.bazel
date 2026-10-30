@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "queue",
+    crate_name = "maxcode_queue_extension",
+)

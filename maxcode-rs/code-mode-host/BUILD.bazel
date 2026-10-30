@@ -1,0 +1,11 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+load("//bazel/rules:runtime_package.bzl", "release_binary")
+
+maxcode_rust_crate(
+    name = "code-mode-host",
+    crate_name = "maxcode_code_mode_host",
+)
+
+release_binary(
+    binary = ":maxcode-code-mode-host",
+)

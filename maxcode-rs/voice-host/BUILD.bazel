@@ -1,0 +1,9 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "voice-host",
+    binaries_with_build_commit = ["maxcode-voice-host"],
+    crate_name = "maxcode_voice_host",
+    crate_srcs = [],
+    unit_test_args = ["--test-threads=1"],
+)

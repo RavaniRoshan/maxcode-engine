@@ -1,0 +1,9 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "rmcp-client",
+    crate_name = "maxcode_rmcp_client",
+    extra_binaries = [
+        "//maxcode-rs/cli:maxcode",
+    ],
+)

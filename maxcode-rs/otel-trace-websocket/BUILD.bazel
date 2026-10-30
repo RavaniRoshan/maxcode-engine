@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "otel-trace-websocket",
+    crate_name = "maxcode_otel_trace_websocket",
+)

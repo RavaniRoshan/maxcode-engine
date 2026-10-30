@@ -1,0 +1,43 @@
+[package]
+name = "maxcode-sandboxing"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "maxcode_sandboxing"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+maxcode-mxc-sandbox = { workspace = true }
+maxcode-network-proxy = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-uds = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-path-uri = { workspace = true }
+maxcode-utils-pty = { workspace = true }
+maxcode-windows-sandbox = { workspace = true }
+dunce = { workspace = true }
+libc = { workspace = true }
+serde_json = { workspace = true }
+regex-lite = { workspace = true }
+tokio = { workspace = true, features = ["rt", "sync"] }
+tracing = { workspace = true, features = ["log"] }
+url = { workspace = true }
+which = { workspace = true }
+
+[target.'cfg(windows)'.dependencies]
+maxcode-otel = { workspace = true }
+maxcode-utils-home-dir = { workspace = true }
+
+[dev-dependencies]
+anyhow = { workspace = true }
+maxcode-utils-cargo-bin = { workspace = true }
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt", "time"] }

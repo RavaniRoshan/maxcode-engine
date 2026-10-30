@@ -1,0 +1,17 @@
+[package]
+name = "maxcode-utils-oss"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-core = { workspace = true }
+maxcode-lmstudio = { workspace = true }
+maxcode-model-provider-info = { workspace = true }
+maxcode-ollama = { workspace = true }
+
+[lib]
+doctest = false

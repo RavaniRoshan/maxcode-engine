@@ -1,0 +1,29 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-prompts"
+version.workspace = true
+
+[lib]
+doctest = false
+name = "maxcode_prompts"
+path = "src/lib.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+maxcode-collaboration-mode-templates = { workspace = true }
+maxcode-context-fragments = { workspace = true }
+maxcode-execpolicy = { workspace = true }
+maxcode-git-utils = { workspace = true }
+maxcode-guardian-context = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-template = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+maxcode-protocol-test-support = { workspace = true }
+pretty_assertions = { workspace = true }

@@ -1,0 +1,8 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "maxcode-mcp",
+    crate_name = "maxcode_mcp",
+    extra_binaries = ["//maxcode-rs/cli:maxcode"],
+    test_data_extra = glob(["src/**/snapshots/**"]),
+)

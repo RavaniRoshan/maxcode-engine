@@ -1,0 +1,40 @@
+[package]
+name = "maxcode-app-server-client"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "maxcode_app_server_client"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-app-server = { workspace = true }
+maxcode-app-server-protocol = { workspace = true }
+maxcode-arg0 = { workspace = true }
+maxcode-config = { workspace = true }
+maxcode-core = { workspace = true }
+maxcode-exec-server = { workspace = true }
+maxcode-feedback = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-uds = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-rustls-provider = { workspace = true }
+futures = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true, features = ["sync", "time", "rt"] }
+tokio-tungstenite = { workspace = true }
+toml = { workspace = true }
+tracing = { workspace = true }
+url = { workspace = true }
+
+[dev-dependencies]
+pretty_assertions = { workspace = true }
+serde_json = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }

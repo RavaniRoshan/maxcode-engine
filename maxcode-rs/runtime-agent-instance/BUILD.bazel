@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "runtime-agent-instance",
+    crate_name = "maxcode_runtime_agent_instance",
+)

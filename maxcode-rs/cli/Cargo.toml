@@ -1,0 +1,152 @@
+[package]
+name = "maxcode-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+build = "build.rs"
+default-run = "maxcode-engine"
+
+[[bin]]
+name = "maxcode-engine"
+path = "src/main.rs"
+
+[[bin]]
+name = "logs_client"
+path = "src/bin/logs_client.rs"
+
+[[test]]
+name = "app_server_daemon_package"
+path = "tests/app_server_daemon/package.rs"
+
+[lib]
+name = "maxcode_cli"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-utils-process = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+clap = { workspace = true, features = ["derive", "env"] }
+clap_complete = { workspace = true }
+maxcode-app-server = { workspace = true }
+maxcode-app-server-daemon = { workspace = true }
+maxcode-app-server-protocol = { workspace = true }
+maxcode-app-server-test-client = { workspace = true }
+maxcode-arg0 = { workspace = true }
+maxcode-build-info = { workspace = true }
+maxcode-api = { workspace = true }
+maxcode-aws-auth = { workspace = true }
+maxcode-chatgpt = { workspace = true }
+maxcode-cloud-config = { workspace = true }
+maxcode-cloud-tasks = { path = "../cloud-tasks" }
+maxcode-utils-cli = { workspace = true }
+maxcode-config = { workspace = true }
+maxcode-core = { workspace = true }
+maxcode-core-plugins = { workspace = true }
+maxcode-history = { workspace = true }
+maxcode-home = { workspace = true }
+maxcode-http-client = { workspace = true }
+maxcode-exec = { workspace = true }
+maxcode-exec-server = { workspace = true }
+maxcode-execpolicy = { workspace = true }
+maxcode-extension-api = { workspace = true }
+maxcode-features = { workspace = true }
+maxcode-multi-env-copy-file = { workspace = true }
+maxcode-git-attribution = { workspace = true }
+maxcode-git-utils = { workspace = true }
+maxcode-install-context = { workspace = true }
+maxcode-login = { workspace = true }
+maxcode-memories-write = { workspace = true }
+maxcode-mcp = { workspace = true }
+maxcode-model-provider = { workspace = true }
+maxcode-models-manager = { workspace = true }
+maxcode-plugin = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-responses-api-proxy = { workspace = true }
+maxcode-tcp-tunnel = { workspace = true }
+maxcode-rmcp-client = { workspace = true }
+maxcode-rollout = { workspace = true }
+maxcode-rollout-trace = { workspace = true }
+maxcode-sandboxing = { workspace = true }
+maxcode-skills-extension = { workspace = true }
+maxcode-state = { workspace = true }
+maxcode-stdio-to-uds = { workspace = true }
+maxcode-terminal-detection = { workspace = true }
+maxcode-thread-store = { workspace = true }
+maxcode-tui = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-path = { workspace = true }
+maxcode-utils-path-uri = { workspace = true }
+maxcode-utils-redacted-string = { workspace = true }
+maxcode-websocket-auth = { workspace = true }
+crossterm = { workspace = true, features = ["event-stream"] }
+futures = { workspace = true }
+http = { workspace = true }
+libc = { workspace = true }
+libsqlite3-sys = { workspace = true }
+os_info = { workspace = true }
+owo-colors = { workspace = true }
+regex-lite = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+sqlx = { workspace = true }
+supports-color = { workspace = true }
+sys-locale = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = [
+    "io-std",
+    "macros",
+    "net",
+    "process",
+    "rt-multi-thread",
+    "signal",
+    "time",
+] }
+toml = { workspace = true }
+tracing = { workspace = true }
+tracing-appender = { workspace = true }
+tracing-subscriber = { workspace = true }
+unicode-segmentation = { workspace = true }
+url = { workspace = true }
+which = { workspace = true }
+
+[target.'cfg(all(target_os = "linux", target_env = "musl", any(target_arch = "x86_64", target_arch = "aarch64")))'.dependencies]
+tikv-jemallocator = { workspace = true }
+
+[target.'cfg(target_os = "windows")'.dependencies]
+maxcode_windows_sandbox = { package = "maxcode-windows-sandbox", path = "../windows-sandbox-rs" }
+windows-sys = { workspace = true, features = [
+    "Win32_Foundation",
+    "Win32_Storage_Packaging_Appx",
+    "Win32_System_Console",
+    "Win32_System_Threading",
+] }
+
+[dev-dependencies]
+app_test_support = { workspace = true }
+assert_cmd = { workspace = true }
+assert_matches = { workspace = true }
+maxcode-app-server-client = { workspace = true }
+maxcode-utils-cargo-bin = { workspace = true }
+maxcode-utils-pty = { workspace = true }
+core_test_support = { workspace = true }
+flate2 = { workspace = true }
+insta = { workspace = true }
+jsonwebtoken = { workspace = true }
+predicates = { workspace = true }
+pretty_assertions = { workspace = true }
+sha2 = { workspace = true }
+tar = { workspace = true }
+tokio-tungstenite = { workspace = true }
+vt100 = { workspace = true }
+wiremock = { workspace = true }
+zstd = { workspace = true }
+
+[package.metadata.cargo-shear]
+# These Rust sources are intentionally Bazel-only macrobenchmarks rather than
+# Cargo targets.
+ignored-paths = ["e2e_benches/*.rs"]

@@ -1,0 +1,24 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-connectors-extension"
+version.workspace = true
+
+[lib]
+name = "maxcode_connectors_extension"
+path = "src/lib.rs"
+doctest = false
+test = false
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-connectors = { workspace = true }
+maxcode-core-plugins = { workspace = true }
+maxcode-file-system = { workspace = true }
+maxcode-plugin = { workspace = true }
+maxcode-utils-path-uri = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }

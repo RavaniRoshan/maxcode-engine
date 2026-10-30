@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "stdio-to-uds",
+    crate_name = "maxcode_stdio_to_uds",
+)

@@ -1,0 +1,168 @@
+[package]
+name = "maxcode-app-server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "maxcode-app-server"
+path = "src/main.rs"
+
+[[bin]]
+name = "maxcode-app-server-test-notify-capture"
+path = "src/bin/notify_capture.rs"
+
+[[bin]]
+name = "exec-server"
+path = "src/bin/exec_server.rs"
+
+[lib]
+name = "maxcode_app_server"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-utils-process = { workspace = true }
+anyhow = { workspace = true }
+base64 = { workspace = true }
+axum = { workspace = true, default-features = false, features = [
+    "http1",
+    "json",
+    "tokio",
+    "ws",
+] }
+maxcode-analytics = { workspace = true }
+maxcode-app-server-daemon = { workspace = true }
+maxcode-agent-extension = { workspace = true }
+maxcode-arg0 = { workspace = true }
+maxcode-aws-auth = { workspace = true }
+maxcode-cloud-config = { workspace = true }
+maxcode-code-mode = { workspace = true }
+maxcode-config = { workspace = true }
+maxcode-network-proxy = { workspace = true }
+maxcode-connectors = { workspace = true }
+maxcode-core = { workspace = true }
+maxcode-core-plugins = { workspace = true }
+maxcode-diagnostics = { workspace = true }
+maxcode-home = { workspace = true }
+maxcode-exec-server = { workspace = true }
+maxcode-extension-api = { workspace = true }
+maxcode-external-agent-migration = { workspace = true }
+maxcode-features = { workspace = true }
+maxcode-multi-env-copy-file = { workspace = true }
+maxcode-goal-extension = { workspace = true }
+maxcode-git-attribution = { workspace = true }
+maxcode-guardian-v2 = { workspace = true }
+maxcode-git-utils = { workspace = true }
+maxcode-file-watcher = { workspace = true }
+maxcode-hooks = { workspace = true }
+maxcode-history-notes-extension = { workspace = true }
+maxcode-http-client = { workspace = true }
+maxcode-otel = { workspace = true }
+maxcode-plugin = { workspace = true }
+maxcode-shell-command = { workspace = true }
+maxcode-skills = { workspace = true }
+maxcode-skills-extension = { workspace = true }
+maxcode-utils-cli = { workspace = true }
+maxcode-user-verification = { workspace = true }
+maxcode-utils-pty = { workspace = true }
+maxcode-backend-client = { workspace = true }
+maxcode-file-search = { workspace = true }
+maxcode-chatgpt = { workspace = true }
+maxcode-login = { workspace = true }
+maxcode-image-generation-extension = { workspace = true }
+maxcode-memories-extension = { workspace = true }
+maxcode-web-search-extension = { workspace = true }
+maxcode-websocket-auth = { workspace = true }
+maxcode-memories-write = { workspace = true }
+maxcode-mcp = { workspace = true }
+maxcode-mcp-extension = { workspace = true }
+maxcode-model-provider = { workspace = true }
+maxcode-model-provider-info = { workspace = true }
+maxcode-models-manager = { workspace = true }
+maxcode-prompts = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-queue-extension = { workspace = true }
+maxcode-app-server-protocol = { workspace = true }
+maxcode-app-server-transport = { workspace = true }
+maxcode-feedback = { workspace = true }
+maxcode-rmcp-client = { workspace = true }
+maxcode-rollout = { workspace = true }
+maxcode-sandboxing = { workspace = true }
+maxcode-state = { workspace = true }
+maxcode-thread-store = { workspace = true }
+maxcode-tools = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-json-to-toml = { workspace = true }
+maxcode-utils-path-uri = { workspace = true }
+chrono = { workspace = true }
+clap = { workspace = true, features = ["derive"] }
+futures = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+tempfile = { workspace = true }
+thiserror = { workspace = true }
+time = { workspace = true }
+toml = { workspace = true }
+toml_edit = { workspace = true }
+tokio = { workspace = true, features = [
+    "io-std",
+    "macros",
+    "process",
+    "rt-multi-thread",
+    "signal",
+] }
+tokio-util = { workspace = true }
+tracing = { workspace = true, features = ["log"] }
+tracing-subscriber = { workspace = true, features = ["env-filter", "fmt", "json"] }
+url = { workspace = true }
+uuid = { workspace = true, features = ["serde", "v7"] }
+
+[target.'cfg(all(target_os = "linux", target_env = "musl", any(target_arch = "x86_64", target_arch = "aarch64")))'.dependencies]
+tikv-jemallocator = { workspace = true }
+
+[target.'cfg(unix)'.dependencies]
+libc = { workspace = true }
+
+[target.'cfg(windows)'.dependencies]
+maxcode-windows-sandbox = { workspace = true }
+
+[dev-dependencies]
+zip = { workspace = true }
+maxcode-uds = { workspace = true }
+app_test_support = { workspace = true }
+axum = { workspace = true, default-features = false, features = [
+    "http1",
+    "json",
+    "tokio",
+] }
+base64 = { workspace = true }
+maxcode-utils-cargo-bin = { workspace = true }
+core_test_support = { workspace = true }
+flate2 = { workspace = true }
+hmac = { workspace = true }
+http = { workspace = true }
+insta = { workspace = true }
+keyring = { workspace = true }
+opentelemetry = { workspace = true }
+opentelemetry_sdk = { workspace = true }
+pretty_assertions = { workspace = true }
+rcgen = { workspace = true }
+rmcp = { workspace = true, default-features = false, features = [
+    "elicitation",
+    "server",
+    "transport-streamable-http-server",
+] }
+serial_test = { workspace = true }
+shlex = { workspace = true }
+sqlx = { workspace = true }
+tar = { workspace = true }
+test-case = "3.3.1"
+tokio-rustls = { workspace = true }
+tokio-tungstenite = { workspace = true }
+tracing-opentelemetry = { workspace = true }
+wiremock = { workspace = true }

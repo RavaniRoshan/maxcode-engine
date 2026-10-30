@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "agent-identity",
+    crate_name = "maxcode_agent_identity",
+)

@@ -1,0 +1,45 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-mcp-extension"
+version.workspace = true
+
+[lib]
+name = "maxcode_mcp_extension"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+maxcode-core = { workspace = true }
+maxcode-core-plugins = { workspace = true }
+maxcode-config = { workspace = true }
+maxcode-connectors = { workspace = true }
+maxcode-connectors-extension = { workspace = true }
+maxcode-exec-server = { workspace = true }
+maxcode-extension-api = { workspace = true }
+maxcode-features = { workspace = true }
+maxcode-mcp = { workspace = true }
+maxcode-plugin = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-path-uri = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+tokio = { workspace = true, features = ["sync"] }
+
+[dev-dependencies]
+core_test_support = { workspace = true }
+axum = { workspace = true }
+maxcode-exec-server-test-support = { workspace = true }
+maxcode-login = { workspace = true }
+futures = { workspace = true }
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread", "test-util"] }
+tokio-util = { workspace = true, features = ["rt"] }
+wiremock = { workspace = true }

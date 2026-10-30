@@ -1,0 +1,7 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "otel",
+    crate_name = "maxcode_otel",
+    integration_test_args = ["--test-threads=1"],
+)

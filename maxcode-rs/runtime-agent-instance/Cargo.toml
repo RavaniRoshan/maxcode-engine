@@ -1,0 +1,36 @@
+[package]
+name = "maxcode-runtime-agent-instance"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+base64 = { workspace = true }
+maxcode-agent-identity = { workspace = true }
+maxcode-api = { workspace = true }
+maxcode-features = { workspace = true }
+maxcode-http-client = { workspace = true }
+maxcode-login = { workspace = true }
+maxcode-utils-redacted-string = { workspace = true }
+ed25519-dalek = { workspace = true }
+http = { workspace = true }
+rand = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true, features = ["sync"] }
+url = { workspace = true }
+uuid = { workspace = true, features = ["serde", "v4"] }
+zeroize = { workspace = true }
+
+[dev-dependencies]
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+wiremock = { workspace = true }

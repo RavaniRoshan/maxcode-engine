@@ -1,0 +1,51 @@
+[package]
+name = "maxcode-app-server-daemon"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "maxcode_app_server_daemon"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+maxcode-app-server-protocol = { workspace = true }
+maxcode-app-server-transport = { workspace = true }
+maxcode-features = { workspace = true }
+maxcode-http-client = { workspace = true }
+maxcode-install-context = { workspace = true }
+maxcode-utils-home-dir = { workspace = true }
+maxcode-utils-process = { workspace = true }
+maxcode-uds = { workspace = true }
+futures = { workspace = true }
+libc = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+semver = { workspace = true }
+blake3 = { workspace = true }
+tokio = { workspace = true, features = [
+    "fs",
+    "io-util",
+    "macros",
+    "process",
+    "rt-multi-thread",
+    "signal",
+    "time",
+] }
+tempfile = { workspace = true }
+tokio-tungstenite = { workspace = true }
+tracing = { workspace = true }
+tracing-appender = { workspace = true }
+
+[dev-dependencies]
+maxcode-utils-cargo-bin = { workspace = true }
+pretty_assertions = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true, features = ["Win32_Foundation", "Win32_Storage_FileSystem", "Win32_System_Console", "Win32_System_IO", "Win32_System_JobObjects", "Win32_Security", "Win32_Security_Authorization", "Win32_System_Threading"] }

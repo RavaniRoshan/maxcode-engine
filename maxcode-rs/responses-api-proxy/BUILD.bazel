@@ -1,0 +1,11 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+load("//bazel/rules:runtime_package.bzl", "release_binary")
+
+maxcode_rust_crate(
+    name = "responses-api-proxy",
+    crate_name = "maxcode_responses_api_proxy",
+)
+
+release_binary(
+    binary = ":maxcode-responses-api-proxy",
+)

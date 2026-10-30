@@ -1,0 +1,29 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-skills"
+version.workspace = true
+build = "build.rs"
+
+[lib]
+doctest = false
+name = "maxcode_skills"
+path = "src/lib.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-protocol = { workspace = true }
+maxcode-shell-command = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-path-uri = { workspace = true }
+include_dir = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_yaml = { workspace = true }
+shlex = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+pretty_assertions = { workspace = true }

@@ -1,0 +1,7 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "support",
+    crate_name = "maxcode_protocol_test_support",
+    crate_srcs = glob(["*.rs"]),
+)

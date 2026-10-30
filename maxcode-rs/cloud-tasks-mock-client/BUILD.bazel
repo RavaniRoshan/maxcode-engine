@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "cloud-tasks-mock-client",
+    crate_name = "maxcode_cloud_tasks_mock_client",
+)

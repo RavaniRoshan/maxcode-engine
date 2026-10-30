@@ -1,0 +1,8 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "support",
+    compile_data = ["//maxcode-rs/exec-server:src/proto/maxcode.exec_server.relay.v1.rs"],
+    crate_name = "maxcode_exec_server_test_support",
+    crate_srcs = glob(["*.rs"]),
+)

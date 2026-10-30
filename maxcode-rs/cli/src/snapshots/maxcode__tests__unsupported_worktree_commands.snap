@@ -1,0 +1,13 @@
+---
+source: cli/src/main.rs
+assertion_line: 3324
+expression: "errors.join(\"\\n\")"
+---
+maxcode --worktree login: `--worktree` supports new interactive sessions, `maxcode fork`, `maxcode exec`, and `maxcode exec fork`
+maxcode fork --worktree: `maxcode fork --worktree` requires an explicit session ID
+maxcode fork --worktree --last: `maxcode fork --worktree` requires an explicit session ID
+maxcode exec resume --worktree session: `--worktree` cannot resume an existing session; use `maxcode exec fork --worktree`
+maxcode exec review --worktree: `--worktree` is not supported for code review
+maxcode resume --worktree session: `--worktree` supports new interactive sessions, `maxcode fork`, `maxcode exec`, and `maxcode exec fork`
+maxcode archive session --worktree: `--worktree` supports new interactive sessions, `maxcode fork`, `maxcode exec`, and `maxcode exec fork`
+maxcode queue --thread session --message hi --worktree: `--worktree` supports new interactive sessions, `maxcode fork`, `maxcode exec`, and `maxcode exec fork`

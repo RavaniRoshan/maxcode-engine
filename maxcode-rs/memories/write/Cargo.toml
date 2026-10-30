@@ -1,0 +1,49 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-memories-write"
+version.workspace = true
+
+[lib]
+name = "maxcode_memories_write"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+chrono = { workspace = true }
+maxcode-backend-client = { workspace = true }
+maxcode-core = { workspace = true }
+maxcode-config = { workspace = true }
+maxcode-features = { workspace = true }
+maxcode-git-utils = { workspace = true }
+maxcode-login = { workspace = true }
+maxcode-model-provider = { workspace = true }
+maxcode-otel = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-rollout = { workspace = true }
+maxcode-rollout-trace = { workspace = true }
+maxcode-secrets = { workspace = true }
+maxcode-state = { workspace = true }
+maxcode-terminal-detection = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }
+maxcode-utils-output-truncation = { workspace = true }
+maxcode-utils-template = { workspace = true }
+futures = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+tokio = { workspace = true, features = ["fs", "rt", "sync", "time"] }
+tracing = { workspace = true, features = ["log"] }
+uuid = { workspace = true, features = ["v4", "v5"] }
+
+[dev-dependencies]
+maxcode-model-provider-info = { workspace = true }
+maxcode-models-manager = { workspace = true }
+core_test_support = { workspace = true }
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["fs", "macros"] }
+wiremock = { workspace = true }

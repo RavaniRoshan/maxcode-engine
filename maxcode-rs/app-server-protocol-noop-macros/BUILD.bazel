@@ -1,0 +1,7 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "app-server-protocol-noop-macros",
+    crate_name = "maxcode_app_server_protocol_noop_macros",
+    proc_macro = True,
+)

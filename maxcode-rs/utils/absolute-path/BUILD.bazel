@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "absolute-path",
+    crate_name = "maxcode_utils_absolute_path",
+)

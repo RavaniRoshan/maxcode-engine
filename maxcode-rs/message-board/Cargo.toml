@@ -1,0 +1,35 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-message-board"
+version.workspace = true
+
+[lib]
+name = "maxcode_message_board"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+base64 = { workspace = true }
+caseless = { workspace = true }
+chrono = { workspace = true, features = ["serde"] }
+maxcode-protocol = { workspace = true }
+maxcode-state = { workspace = true }
+maxcode-tools = { workspace = true }
+futures = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+sqlx = { workspace = true }
+tokio = { workspace = true, features = ["fs", "rt", "sync"] }
+tracing = { workspace = true }
+uuid = { workspace = true, features = ["serde", "v7"] }
+
+[dev-dependencies]
+maxcode-attachment-store = { workspace = true }
+maxcode-utils-output-truncation = { workspace = true }
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }

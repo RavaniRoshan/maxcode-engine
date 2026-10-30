@@ -1,81 +1,118 @@
-<p align="center"><strong>Codex CLI</strong> is a coding agent from OpenAI that runs locally on your computer.
 <p align="center">
-  <img src="https://github.com/openai/codex/blob/main/.github/codex-cli-splash.png" alt="Codex CLI splash" width="80%" />
+  <img src="https://raw.githubusercontent.com/RavaniRoshan/maxcode/main/assets/max.svg" width="120" height="135" alt="Max, the maxcode mascot">
 </p>
-</br>
-If you want Codex in your code editor (VS Code, Cursor, Windsurf), <a href="https://developers.openai.com/codex/ide">install in your IDE.</a>
-</br>If you want the desktop app experience, run <code>codex app</code> or visit <a href="https://chatgpt.com/codex?app-landing-page=true">the Codex App page</a>.
-</br>If you are looking for the <em>cloud-based agent</em> from OpenAI, <strong>Codex Web</strong>, go to <a href="https://chatgpt.com/codex">chatgpt.com/codex</a>.</p>
+
+<h1 align="center">maxcode-engine</h1>
+
+<p align="center">The execution engine behind <a href="https://github.com/RavaniRoshan/maxcode">maxcode</a>.</p>
 
 ---
 
-## Quickstart
+## What this is
 
-### Installing and running Codex CLI
+`maxcode-engine` is the process that edits files and runs commands for the
+`maxcode` CLI. It is a self-contained Rust workspace. The Python CLI owns the
+plan/verify loop; this engine owns the non-interactive `exec` session.
 
-Run the following on Mac or Linux to install Codex CLI:
+The engine reads its state from `MAXCODE_HOME` (default `~/.maxcode`). Provider
+keys are read from the environment variable named in the provider config. Keys
+are never written to disk by this project.
 
-```shell
-curl -fsSL https://chatgpt.com/codex/install.sh | sh
+## Build
+
+Requires a recent stable Rust toolchain and a C toolchain.
+
+```bash
+cd maxcode-rs
+cargo build --release -p maxcode-cli --bin maxcode-engine
+install -m 755 target/release/maxcode-engine ~/.local/bin/maxcode-engine
+maxcode-engine --version
 ```
 
-Run the following on Windows to install Codex CLI:
+### Low-memory build
 
-```shell
-powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
+The workspace is large. On a machine with 8 GB of RAM, avoid release LTO and
+parallel codegen. The checked-in `dev-small` profile is the fastest path to a
+working binary:
+
+```bash
+CARGO_BUILD_JOBS=4 cargo build --profile dev-small -p maxcode-cli --bin maxcode-engine
 ```
 
-The standalone installers download from `https://releases.openai.com/codex` by default and fall back to GitHub Releases if a metadata or asset download is unavailable. To force GitHub Releases, set `CODEX_INSTALLER_USE_RELEASES_OPENAI_COM` to `false` (`0` and `no` are also accepted):
+For a smaller, faster release build without LTO:
 
-```shell
-curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_INSTALLER_USE_RELEASES_OPENAI_COM=false sh
+```bash
+CARGO_PROFILE_RELEASE_LTO=off \
+CARGO_PROFILE_RELEASE_CODEGEN_UNITS=16 \
+CARGO_PROFILE_RELEASE_DEBUG=0 \
+CARGO_BUILD_JOBS=2 \
+cargo build --release -p maxcode-cli --bin maxcode-engine
 ```
 
-```powershell
-$env:CODEX_INSTALLER_USE_RELEASES_OPENAI_COM='false'; irm https://chatgpt.com/codex/install.ps1 | iex
+If the linker is the bottleneck, Rust ships an LLD binary. Point the linker at
+it without installing anything system-wide:
+
+```bash
+RUSTFLAGS="-C linker=$HOME/.local/bin/ld.lld -C linker-flavor=ld" \
+cargo build --release -p maxcode-cli --bin maxcode-engine
 ```
 
-Codex CLI can also be installed via the following package managers:
+Create that symlink once:
 
-```shell
-# Install using npm
-npm install -g @openai/codex
+```bash
+ln -sf "$(rustc --print sysroot)/lib/rustlib/$(rustc -vV | sed -n 's/^host: //p')/bin/rust-lld" \
+  "$HOME/.local/bin/ld.lld"
 ```
 
-```shell
-# Install using Homebrew
-brew install --cask codex
+Builds are resumable: if a build is interrupted, run the same command again and
+Cargo reuses completed crates. Keep the `target/` directory between attempts.
+
+## Use
+
+```bash
+maxcode-engine exec --json --skip-git-repo-check \
+  -C /path/to/repo -s workspace-write \
+  -m "$MODEL" "fix the failing test"
 ```
 
-Then simply run `codex` to get started.
+Provider configuration is passed with `-c` overrides, for example:
 
-<details>
-<summary>You can also go to the <a href="https://github.com/openai/codex/releases/latest">latest GitHub Release</a> and download the appropriate binary for your platform.</summary>
+```bash
+maxcode-engine exec -m "provider/model" \
+  -c 'model_provider=maxcode' \
+  -c 'model_providers.maxcode.base_url="https://openrouter.ai/api/v1"' \
+  -c 'model_providers.maxcode.env_key="OPENROUTER_API_KEY"' \
+  -c 'model_providers.maxcode.wire_api="responses"' \
+  "fix the failing test"
+```
 
-Each GitHub Release contains many executables, but in practice, you likely want one of these:
+Run `maxcode-engine exec --help` for the full flag list.
 
-- macOS
-  - Apple Silicon/arm64: `codex-aarch64-apple-darwin.tar.gz`
-  - x86_64 (older Mac hardware): `codex-x86_64-apple-darwin.tar.gz`
-- Linux
-  - x86_64: `codex-x86_64-unknown-linux-musl.tar.gz`
-  - arm64: `codex-aarch64-unknown-linux-musl.tar.gz`
+## Workspace
 
-Each archive contains a single entry with the platform baked into the name (e.g., `codex-x86_64-unknown-linux-musl`), so you likely want to rename it to `codex` after extracting it.
+```text
+maxcode-rs/
+  cli/        maxcode-engine binary
+  exec/       non-interactive session
+  core/       agent loop and tools
+  tui/        interactive terminal UI
+  protocol/   event and app-server types
+  config/     layered configuration
+```
 
-</details>
+## Development
 
-### Using Codex with your ChatGPT plan
+```bash
+cargo check -p maxcode-cli
+cargo test -p maxcode-exec
+cargo fmt --check
+```
 
-Run `codex` and select **Sign in with ChatGPT**. We recommend signing into your ChatGPT account to use Codex as part of your Plus, Pro, Business, Edu, or Enterprise plan. [Learn more about what's included in your ChatGPT plan](https://help.openai.com/en/articles/11369540-codex-in-chatgpt).
+The workspace pins dependencies in `Cargo.lock`. Do not delete it when
+rebuilding: the `rama` alpha crates must move together.
 
-You can also use Codex with an API key, but this requires [additional setup](https://developers.openai.com/codex/auth#sign-in-with-an-api-key).
+## Legal
 
-## Docs
-
-- [**Codex Documentation**](https://developers.openai.com/codex)
-- [**Contributing**](./docs/contributing.md)
-- [**Installing & building**](./docs/install.md)
-- [**Open source fund**](./docs/open-source-fund.md)
-
-This repository is licensed under the [Apache-2.0 License](LICENSE).
+`maxcode-engine` is an independent fork of the Codex CLI (Apache-2.0) and is not
+affiliated with OpenAI. The upstream license and notice are preserved in
+[`LICENSE`](LICENSE) and [`NOTICE`](NOTICE).

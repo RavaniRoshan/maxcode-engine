@@ -1,0 +1,25 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-cloud-tasks-client"
+version.workspace = true
+
+[lib]
+name = "maxcode_cloud_tasks_client"
+path = "src/lib.rs"
+test = false
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+chrono = { workspace = true, features = ["serde"] }
+maxcode-api = { workspace = true }
+maxcode-backend-client = { workspace = true }
+maxcode-git-utils = { workspace = true }
+maxcode-http-client = { workspace = true }
+serde = { version = "1", features = ["derive"] }
+serde_json = { workspace = true }
+thiserror = { workspace = true }

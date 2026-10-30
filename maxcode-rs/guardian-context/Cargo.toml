@@ -1,0 +1,24 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-guardian-context"
+version.workspace = true
+
+[lib]
+doctest = false
+name = "maxcode_guardian_context"
+path = "src/lib.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-context-fragments = { workspace = true }
+maxcode-history = { workspace = true }
+maxcode-protocol = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+
+[dev-dependencies]
+maxcode-protocol-test-support = { workspace = true }
+pretty_assertions = { workspace = true }

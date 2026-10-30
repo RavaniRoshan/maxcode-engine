@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "skills",
+    crate_name = "maxcode_skills_extension",
+)

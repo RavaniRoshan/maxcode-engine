@@ -1,0 +1,7 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "maxcode-experimental-api-macros",
+    crate_name = "maxcode_experimental_api_macros",
+    proc_macro = True,
+)

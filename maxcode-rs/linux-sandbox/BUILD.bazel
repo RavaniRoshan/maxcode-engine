@@ -1,0 +1,13 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "linux-sandbox",
+    crate_name = "maxcode_linux_sandbox",
+    extra_binaries = [
+        "//maxcode-rs/bwrap:bwrap",
+    ],
+    rustc_env_files = select({
+        "@platforms//os:linux": ["//maxcode-rs/bwrap:bwrap-sha256-env"],
+        "//conditions:default": [],
+    }),
+)

@@ -1,0 +1,7 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "backend-client",
+    compile_data = glob(["tests/fixtures/**"]),
+    crate_name = "maxcode_backend_client",
+)

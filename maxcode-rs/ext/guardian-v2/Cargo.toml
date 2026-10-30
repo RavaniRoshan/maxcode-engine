@@ -1,0 +1,51 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-guardian-v2"
+version.workspace = true
+
+[lib]
+name = "maxcode_guardian_v2"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+maxcode-analytics = { workspace = true }
+maxcode-api = { workspace = true }
+maxcode-config = { workspace = true }
+maxcode-context-fragments = { workspace = true }
+maxcode-core = { workspace = true }
+maxcode-extension-api = { workspace = true }
+maxcode-features = { workspace = true }
+maxcode-guardian-context = { workspace = true }
+maxcode-guardian-reviewer = { workspace = true }
+maxcode-history = { workspace = true }
+maxcode-http-client = { workspace = true }
+maxcode-login = { workspace = true }
+maxcode-model-provider = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-prompts = { workspace = true }
+maxcode-websocket-client = { workspace = true }
+dirs = { workspace = true }
+http = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true, features = ["time"] }
+tracing = { workspace = true }
+uuid = { workspace = true }
+
+[dev-dependencies]
+maxcode-model-provider-info = { workspace = true }
+maxcode-protocol-test-support = { workspace = true }
+maxcode-utils-cargo-bin = { workspace = true }
+core_test_support = { workspace = true }
+insta = { workspace = true }
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+wiremock = { workspace = true }
+zstd = { workspace = true }

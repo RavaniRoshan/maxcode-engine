@@ -1,0 +1,33 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-core-api"
+version.workspace = true
+
+[lib]
+doctest = false
+name = "maxcode_core_api"
+path = "src/lib.rs"
+test = false
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-app-server-protocol = { workspace = true }
+maxcode-arg0 = { workspace = true }
+maxcode-analytics = { workspace = true }
+maxcode-config = { workspace = true }
+maxcode-core = { workspace = true }
+maxcode-extension-api = { workspace = true }
+maxcode-home = { workspace = true }
+maxcode-history = { workspace = true }
+maxcode-image-generation-extension = { workspace = true }
+maxcode-exec-server = { workspace = true }
+maxcode-features = { workspace = true }
+maxcode-login = { workspace = true }
+maxcode-model-provider-info = { workspace = true }
+maxcode-models-manager = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-state = { workspace = true }
+maxcode-utils-absolute-path = { workspace = true }

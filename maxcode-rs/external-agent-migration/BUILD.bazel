@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "external-agent-migration",
+    crate_name = "maxcode_external_agent_migration",
+)

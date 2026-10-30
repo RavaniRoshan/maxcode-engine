@@ -1,0 +1,36 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-guardian-reviewer"
+version.workspace = true
+
+[lib]
+doctest = false
+name = "maxcode_guardian_reviewer"
+path = "src/lib.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+maxcode-analytics = { workspace = true }
+maxcode-extension-api = { workspace = true }
+maxcode-feedback = { workspace = true }
+maxcode-guardian-context = { workspace = true }
+maxcode-mcp = { workspace = true }
+maxcode-otel = { workspace = true }
+maxcode-prompts = { workspace = true }
+maxcode-protocol = { workspace = true }
+rand = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+tokio-util = { workspace = true, features = ["rt"] }
+tracing = { workspace = true }
+
+[dev-dependencies]
+opentelemetry = { workspace = true }
+opentelemetry_sdk = { workspace = true, features = ["experimental_metrics_custom_reader", "metrics"] }
+test-case = "3.3.1"
+pretty_assertions = { workspace = true }

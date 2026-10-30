@@ -1,0 +1,6 @@
+load("//:defs.bzl", "maxcode_rust_crate")
+
+maxcode_rust_crate(
+    name = "stream-parser",
+    crate_name = "maxcode_utils_stream_parser",
+)

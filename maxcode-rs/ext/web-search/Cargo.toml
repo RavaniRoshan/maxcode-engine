@@ -1,0 +1,33 @@
+[package]
+edition.workspace = true
+license.workspace = true
+name = "maxcode-web-search-extension"
+version.workspace = true
+
+[lib]
+name = "maxcode_web_search_extension"
+path = "src/lib.rs"
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+maxcode-api = { workspace = true }
+maxcode-core = { workspace = true }
+maxcode-extension-api = { workspace = true }
+maxcode-extension-items = { workspace = true }
+maxcode-http-client = { workspace = true }
+maxcode-login = { workspace = true }
+maxcode-model-provider = { workspace = true }
+maxcode-model-provider-info = { workspace = true }
+maxcode-otel = { workspace = true }
+maxcode-protocol = { workspace = true }
+maxcode-tools = { workspace = true }
+http = { workspace = true }
+schemars = { workspace = true }
+serde_json = { workspace = true }
+url = { workspace = true }
+
+[dev-dependencies]
+pretty_assertions = { workspace = true }
