@@ -33,7 +33,7 @@ use super::network;
 const MAX_VERSION_RESPONSE_BYTES: usize = 1024 * 1024;
 
 const VERSION_FILE_NAME: &str = "version.json";
-const GITHUB_LATEST_RELEASE_URL: &str = "https://api.github.com/repos/openai/maxcode/releases/latest";
+const GITHUB_LATEST_RELEASE_URL: &str = "https://api.github.com/repos/RavaniRoshan/maxcode-engine/releases/latest";
 const HOMEBREW_CASK_API_URL: &str = "https://formulae.brew.sh/api/cask/maxcode.json";
 #[cfg(all(target_os = "macos", target_arch = "x86_64"))]
 const DESKTOP_UPDATE_URL: &str = "https://persistent.oaistatic.com/maxcode-app-prod/appcast-x64.xml";
@@ -389,13 +389,15 @@ fn push_cached_version_details(details: &mut Vec<String>, version_file: &Path) {
 
 fn update_action_label(context: &InstallContext) -> &'static str {
     match &context.method {
-        InstallMethod::Npm => "npm install -g @openai/maxcode",
-        InstallMethod::Bun => "bun install -g @openai/maxcode",
-        InstallMethod::VitePlus => "vp install -g @openai/maxcode",
-        InstallMethod::Pnpm => "pnpm add -g @openai/maxcode",
         InstallMethod::Brew => "brew upgrade --cask maxcode",
-        InstallMethod::Standalone { .. } => "standalone installer",
-        InstallMethod::Other => "manual or unknown",
+        InstallMethod::Npm
+        | InstallMethod::Bun
+        | InstallMethod::VitePlus
+        | InstallMethod::Pnpm
+        | InstallMethod::Standalone { .. }
+        | InstallMethod::Other => {
+            "https://github.com/RavaniRoshan/maxcode-engine/releases"
+        }
     }
 }
 
@@ -691,21 +693,21 @@ mod tests {
                 method: InstallMethod::Npm,
                 package_layout: None,
             }),
-            "npm install -g @openai/maxcode"
+            "https://github.com/RavaniRoshan/maxcode-engine/releases"
         );
         assert_eq!(
             update_action_label(&InstallContext {
                 method: InstallMethod::Pnpm,
                 package_layout: None,
             }),
-            "pnpm add -g @openai/maxcode"
+            "https://github.com/RavaniRoshan/maxcode-engine/releases"
         );
         assert_eq!(
             update_action_label(&InstallContext {
                 method: InstallMethod::Other,
                 package_layout: None,
             }),
-            "manual or unknown"
+            "https://github.com/RavaniRoshan/maxcode-engine/releases"
         );
     }
 }

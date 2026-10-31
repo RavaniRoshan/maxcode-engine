@@ -1,3 +1,3 @@
 # Maxcode CLI
 
-[**Maxcode CLI Documentation**](https://developers.openai.com/maxcode/cli)
+[**maxcode-engine repository**](https://github.com/RavaniRoshan/maxcode-engine)

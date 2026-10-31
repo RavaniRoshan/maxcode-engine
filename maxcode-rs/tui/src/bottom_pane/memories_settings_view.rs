@@ -33,7 +33,7 @@ use super::popup_consts::MAX_POPUP_ROWS;
 use super::scroll_state::ScrollState;
 use super::selection_popup_common::GenericDisplayRow;
 
-const MEMORIES_DOC_URL: &str = "https://developers.openai.com/maxcode/memories";
+const MEMORIES_DOC_URL: &str = "https://github.com/RavaniRoshan/maxcode-engine";
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum MemoriesSetting {

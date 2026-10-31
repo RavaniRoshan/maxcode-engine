@@ -22,4 +22,4 @@ expression: visible.trim_end()
 
 
 
-  Welcome to Maxcode, OpenAI's command-line coding agent
+  Welcome to Maxcode, a terminal coding agent that finishes only when checks pass

@@ -4,7 +4,7 @@ assertion_line: 778
 expression: rendered
 ---
 
-  >_ OpenAI Maxcode (v0.0.0)
+  >_ maxcode (v0.0.0)
      /tmp/project
 
   Tip: Model just became available

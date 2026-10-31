@@ -306,7 +306,7 @@ pub struct ConfigToml {
 
     /// Preferred backend for storing MCP OAuth credentials.
     /// keyring: Use an OS-specific keyring service.
-    ///          https://github.com/openai/maxcode/blob/main/maxcode-rs/rmcp-client/src/oauth.rs#L2
+    ///          https://github.com/RavaniRoshan/maxcode-engine/blob/main/maxcode-rs/rmcp-client/src/oauth.rs#L2
     /// file: Use a file in the Maxcode home directory.
     /// auto (default): Use the OS-specific keyring service if available, otherwise use a file.
     #[serde(default)]

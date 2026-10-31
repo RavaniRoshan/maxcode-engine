@@ -88,7 +88,7 @@ async fn thread_attachments_support_unloaded_listing_and_idempotent_attachment()
         thread_id: first_thread.clone(),
         attachment_type: "pull_request".to_string(),
         identity_key: r#"["github.com","openai","maxcode",123]"#.to_string(),
-        payload: json!({ "url": "https://github.com/openai/maxcode/pull/123" }),
+        payload: json!({ "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123" }),
     };
     let first: ThreadAttachmentAddResponse = server
         .request(|request_id| ClientRequest::ThreadAttachmentAdd {
@@ -135,7 +135,7 @@ async fn thread_attachments_support_unloaded_listing_and_idempotent_attachment()
                 thread_id: first_thread.clone(),
                 attachment_type: "pull_request".to_string(),
                 identity_key: r#"["github.com","openai","maxcode",456]"#.to_string(),
-                payload: json!({ "url": "https://github.com/openai/maxcode/pull/456" }),
+                payload: json!({ "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/456" }),
             },
         })
         .await?;
@@ -148,7 +148,7 @@ async fn thread_attachments_support_unloaded_listing_and_idempotent_attachment()
                 thread_id: unrelated_thread.clone(),
                 attachment_type: "pull_request".to_string(),
                 identity_key: r#"["github.com","openai","maxcode",789]"#.to_string(),
-                payload: json!({ "url": "https://github.com/openai/maxcode/pull/789" }),
+                payload: json!({ "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/789" }),
             },
         })
         .await?;
@@ -316,7 +316,7 @@ async fn attachment_removal_is_idempotent_and_allows_reattachment() -> Result<()
         thread_id: thread_id.clone(),
         attachment_type: "pull_request".to_string(),
         identity_key: r#"["github.com","openai","maxcode",123]"#.to_string(),
-        payload: json!({ "url": "https://github.com/openai/maxcode/pull/123" }),
+        payload: json!({ "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123" }),
     };
     let created: ThreadAttachmentAddResponse = server
         .request(|request_id| ClientRequest::ThreadAttachmentAdd {
@@ -513,7 +513,7 @@ async fn thread_attachment_mutations_respond_before_broadcasting_updates_to_mult
                 "threadId": thread_id.to_uppercase(),
                 "attachmentType": "pull_request",
                 "identityKey": r#"["github.com","openai","maxcode",123]"#,
-                "payload": { "url": "https://github.com/openai/maxcode/pull/123" }
+                "payload": { "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123" }
             })),
         )
         .await?;

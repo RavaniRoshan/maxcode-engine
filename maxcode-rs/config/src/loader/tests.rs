@@ -849,7 +849,7 @@ model = "gpt-work"
         "unexpected error message: {message}"
     );
     assert!(
-        message.contains("https://developers.openai.com/maxcode/config-advanced#profiles"),
+        message.contains("https://github.com/RavaniRoshan/maxcode-engine"),
         "unexpected error message: {message}"
     );
 }

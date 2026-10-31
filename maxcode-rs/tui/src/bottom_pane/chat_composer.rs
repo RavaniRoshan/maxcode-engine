@@ -5629,7 +5629,7 @@ mod tests {
             "Ask Maxcode to do anything".to_string(),
             /*disable_paste_burst*/ false,
         );
-        let url = "https://github.com/openai/maxcode/pull/20252";
+        let url = "https://github.com/RavaniRoshan/maxcode-engine/pull/20252";
         composer.set_status_line_enabled(/*enabled*/ true);
         composer.set_status_line(Some(Line::from(Span::styled(
             "PR #20252",

@@ -6,7 +6,7 @@ before onboarding: hidden (0x0 viewport)
 ---
 after onboarding:
 
-  >_ OpenAI Maxcode (v<VERSION>)
+  >_ maxcode (v<VERSION>)
      loading
 
 

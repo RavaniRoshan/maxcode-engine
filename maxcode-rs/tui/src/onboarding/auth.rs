@@ -623,7 +623,7 @@ impl AuthModeWidget {
             HyperlinkLine::new(Line::from("  Learn about permissions and approvals in the ").dim());
         docs_line.push_span(
             "Maxcode docs".underlined(),
-            Some("https://developers.openai.com/maxcode/security"),
+            Some("https://github.com/RavaniRoshan/maxcode-engine"),
         );
         let mut preferences_line =
             HyperlinkLine::new(Line::from("  Your plan's rate limits and ").dim());
@@ -1521,7 +1521,7 @@ mod tests {
         widget.render_chatgpt_success_message(area, &mut buf);
 
         assert_eq!(
-            collect_osc8_chars(&buf, area, "https://developers.openai.com/maxcode/security"),
+            collect_osc8_chars(&buf, area, "https://github.com/RavaniRoshan/maxcode-engine"),
             "Maxcode docs"
         );
         assert_eq!(

@@ -117,7 +117,7 @@ async fn attachment_attachments_are_idempotent_and_scoped_to_their_thread() -> R
             thread_ids[0],
             "pull_request",
             "openai/maxcode#123",
-            &json!({ "url": "https://github.com/openai/maxcode/pull/123" }),
+            &json!({ "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123" }),
         )
         .await?;
     let AddThreadAttachmentOutcome::Created(first) = first else {
@@ -130,7 +130,7 @@ async fn attachment_attachments_are_idempotent_and_scoped_to_their_thread() -> R
             thread_ids[0],
             "pull_request",
             "openai/maxcode#123",
-            &json!({ "url": "https://github.com/openai/maxcode/pull/456" }),
+            &json!({ "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/456" }),
         )
         .await?;
     assert_eq!(
@@ -143,7 +143,7 @@ async fn attachment_attachments_are_idempotent_and_scoped_to_their_thread() -> R
             thread_ids[1],
             "pull_request",
             "openai/maxcode#123",
-            &json!({ "url": "https://github.com/openai/maxcode/pull/123" }),
+            &json!({ "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123" }),
         )
         .await?;
     let AddThreadAttachmentOutcome::Created(other) = other else {
@@ -177,7 +177,7 @@ async fn attachment_removals_return_not_found_or_the_removed_record() -> Result<
             thread_id,
             "pull_request",
             "openai/maxcode#123",
-            &json!({ "url": "https://github.com/openai/maxcode/pull/123" }),
+            &json!({ "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123" }),
         )
         .await?;
     let AddThreadAttachmentOutcome::Created(explicit) = explicit else {
@@ -319,7 +319,7 @@ async fn attachments_survive_restart_and_archive_but_cascade_on_thread_deletion(
             thread_id,
             "pull_request",
             "openai/maxcode#123",
-            &json!({ "url": "https://github.com/openai/maxcode/pull/123" }),
+            &json!({ "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123" }),
         )
         .await?
     else {
@@ -433,7 +433,7 @@ async fn concurrent_attachment_attachments_preserve_one_deterministic_identity()
                     thread_id,
                     "pull_request",
                     "openai/maxcode#123",
-                    &json!({ "url": "https://github.com/openai/maxcode/pull/123" }),
+                    &json!({ "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123" }),
                 )
                 .await
         }));

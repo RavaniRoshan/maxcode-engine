@@ -2,7 +2,7 @@ use super::super::*;
 
 #[test]
 fn choice_labels_and_descriptions_keep_complete_url_destinations() {
-    let label = "https://github.com/openai/maxcode/pull/12345?diff=split";
+    let label = "https://github.com/RavaniRoshan/maxcode-engine/pull/12345?diff=split";
     let description = "https://example.com/releases/review/complete-destination";
     let mut snapshots = Vec::new();
     for prefix_label in [false, true] {

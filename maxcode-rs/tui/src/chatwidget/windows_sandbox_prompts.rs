@@ -35,12 +35,12 @@ impl ChatWidget {
         header.push(*Box::new(
             crate::terminal_hyperlinks::HyperlinkText::new(if allow_unelevated {
                 vec![
-                    line!["Set up the Maxcode agent sandbox to protect your files and control network access. Learn more <https://developers.openai.com/maxcode/windows>"],
+                    line!["Set up the Maxcode agent sandbox to protect your files and control network access. Learn more <https://github.com/RavaniRoshan/maxcode-engine"],
                 ]
             } else {
                 vec![
                     line!["Your organization requires the default Maxcode agent sandbox to continue. Set it up to protect your files and control network access."],
-                    line!["Learn more <https://developers.openai.com/maxcode/windows>"],
+                    line!["Learn more <https://github.com/RavaniRoshan/maxcode-engine"],
                 ]
             }),
         ));
@@ -165,7 +165,7 @@ impl ChatWidget {
             ]);
         }
         lines.push(line![
-            "Learn more <https://developers.openai.com/maxcode/windows>"
+            "Learn more <https://github.com/RavaniRoshan/maxcode-engine"
         ]);
 
         let mut header = ColumnRenderable::new();

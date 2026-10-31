@@ -561,7 +561,7 @@ pub(crate) fn resolve_multi_agent_version(
 pub(crate) const INITIAL_SUBMIT_ID: &str = "";
 pub(crate) const SUBMISSION_CHANNEL_CAPACITY: usize = 512;
 const CYBER_VERIFY_URL: &str = "https://chatgpt.com/cyber";
-const CYBER_SAFETY_URL: &str = "https://developers.openai.com/maxcode/concepts/cyber-safety";
+const CYBER_SAFETY_URL: &str = "https://github.com/RavaniRoshan/maxcode-engine";
 
 impl Session {
     /// Spawn and initialize a new session.

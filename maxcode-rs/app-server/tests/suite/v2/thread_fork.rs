@@ -658,7 +658,7 @@ async fn assert_thread_fork_at_named_boundary_keeps_only_terminal_prefix(
                 thread_id: source_thread_id.clone(),
                 attachment_type: "pull_request".to_string(),
                 identity_key: "openai/maxcode#123".to_string(),
-                payload: json!({"url": "https://github.com/openai/maxcode/pull/123"}),
+                payload: json!({"url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123"}),
             },
         })
         .await?;

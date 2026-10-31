@@ -3737,7 +3737,7 @@ mod tests {
 
     #[test]
     fn wrapped_question_preserves_the_complete_url_destination() {
-        let url = "https://github.com/openai/maxcode/pull/12345?diff=split";
+        let url = "https://github.com/RavaniRoshan/maxcode-engine/pull/12345?diff=split";
         let (tx, _rx) = test_sender();
         let mut question = question_without_options("q1", "Release");
         question.question = format!("Review the release\n\nReview {url} before choosing.");

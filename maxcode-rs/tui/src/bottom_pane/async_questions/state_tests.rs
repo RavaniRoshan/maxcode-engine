@@ -142,7 +142,7 @@ fn long_prompt_keeps_the_active_input_visible() {
 
 #[test]
 fn wrapped_question_url_keeps_its_complete_destination() {
-    let url = "https://github.com/openai/maxcode/pull/12345?diff=split";
+    let url = "https://github.com/RavaniRoshan/maxcode-engine/pull/12345?diff=split";
     let mut editor = editor();
     editor.navigate(/*forward*/ true);
     editor.state.pending[1].question.title = format!("Review this change ({url})?");

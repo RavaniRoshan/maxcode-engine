@@ -344,7 +344,7 @@ Attachments record the resources currently associated with a thread, independent
     "threadId": "thr_123",
     "attachmentType": "pull_request",
     "identityKey": "[\"github.com\",\"openai\",\"maxcode\",123]",
-    "payload": { "url": "https://github.com/openai/maxcode/pull/123" }
+    "payload": { "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123" }
 } }
 { "id": 20, "result": {
     "outcome": "created",
@@ -352,7 +352,7 @@ Attachments record the resources currently associated with a thread, independent
         "id": "01984de2-8f74-7c91-a3b2-5c5e937cf318",
         "attachmentType": "pull_request",
         "identityKey": "[\"github.com\",\"openai\",\"maxcode\",123]",
-        "payload": { "url": "https://github.com/openai/maxcode/pull/123" },
+        "payload": { "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123" },
         "createdAt": 1750000000
     }
 } }
@@ -366,7 +366,7 @@ Attachments record the resources currently associated with a thread, independent
         "id": "01984de2-8f74-7c91-a3b2-5c5e937cf318",
         "attachmentType": "pull_request",
         "identityKey": "[\"github.com\",\"openai\",\"maxcode\",123]",
-        "payload": { "url": "https://github.com/openai/maxcode/pull/123" },
+        "payload": { "url": "https://github.com/RavaniRoshan/maxcode-engine/pull/123" },
         "createdAt": 1750000000
     }],
     "nextCursor": null

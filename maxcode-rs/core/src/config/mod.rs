@@ -933,7 +933,7 @@ pub struct Config {
     /// Preferred store for MCP OAuth credentials.
     /// keyring: Use an OS-specific keyring service.
     ///          Credentials stored in the keyring will only be readable by Maxcode unless the user explicitly grants access via OS-level keyring access.
-    ///          https://github.com/openai/maxcode/blob/main/maxcode-rs/rmcp-client/src/oauth.rs#L2
+    ///          https://github.com/RavaniRoshan/maxcode-engine/blob/main/maxcode-rs/rmcp-client/src/oauth.rs#L2
     /// file: MAXCODE_HOME/.credentials.json
     ///       This file will be readable to Maxcode and other applications running as the same user.
     /// auto (default): keyring if available, otherwise file.
@@ -1184,9 +1184,8 @@ pub struct Config {
     /// or placeholder replacement will occur for fast keypress bursts.
     pub disable_paste_burst: bool,
 
-    /// When `false`, disables OpenAI analytics across Maxcode product surfaces on this machine.
+    /// Analytics are disabled unless this is explicitly set to `true`.
     /// Custom OTLP metrics exporters are controlled by `otel.metrics_exporter`.
-    /// Voluntarily left as Optional because the default value might depend on the client.
     pub analytics_enabled: Option<bool>,
 
     /// When `false`, disables feedback uploads and background Guardian review retention. Explicit local exports remain available.
@@ -4268,7 +4267,7 @@ impl Config {
         let compact_prompt = compact_prompt.or(file_compact_prompt);
         let review_model = override_review_model.or(cfg.review_model);
 
-        let check_for_update_on_startup = cfg.check_for_update_on_startup.unwrap_or(true);
+        let check_for_update_on_startup = cfg.check_for_update_on_startup.unwrap_or(false);
         let model_catalog = load_model_catalog(cfg.model_catalog_json.clone())?;
 
         let log_dir = cfg

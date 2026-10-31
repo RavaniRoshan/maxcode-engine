@@ -29,6 +29,18 @@ install -m 755 target/release/maxcode-engine ~/.local/bin/maxcode-engine
 maxcode-engine --version
 ```
 
+### Prebuilt binaries
+
+Tag pushes build and publish two assets on the GitHub Release page:
+
+- `maxcode-engine-linux-x86_64`
+- `maxcode-engine-macos-arm64`
+- `SHA256SUMS`
+
+Download the binary for your platform and mark it executable. The release
+workflow uses cargo's standard `release` profile; the `dev-small` profile below
+is for local low-RAM builds only.
+
 ### Low-memory build
 
 The workspace is large. On a machine with 8 GB of RAM, avoid release LTO and

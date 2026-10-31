@@ -467,7 +467,7 @@ mod tests {
             migration_copy_for_models(
                 "gpt-5",
                 "gpt-5.1",
-                Some("https://www.maxcode.com/models/gpt-5.1".to_string()),
+                Some("https://github.com/RavaniRoshan/maxcode-engine".to_string()),
                 /*migration_copy*/ None,
                 /*migration_markdown*/ None,
                 "gpt-5.1".to_string(),
@@ -490,7 +490,7 @@ mod tests {
             migration_copy_for_models(
                 "gpt-old",
                 "gpt-new",
-                Some("https://www.maxcode.com/models/gpt-new".to_string()),
+                Some("https://github.com/RavaniRoshan/maxcode-engine".to_string()),
                 /*migration_copy*/ None,
                 /*migration_markdown*/ None,
                 "gpt-new".to_string(),
@@ -519,7 +519,7 @@ mod tests {
             migration_copy_for_models(
                 "gpt-old",
                 "gpt-new",
-                Some("https://www.maxcode.com/models/gpt-new".to_string()),
+                Some("https://github.com/RavaniRoshan/maxcode-engine".to_string()),
                 /*migration_copy*/ None,
                 /*migration_markdown*/ None,
                 "gpt-new".to_string(),

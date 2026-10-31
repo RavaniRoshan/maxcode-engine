@@ -15,6 +15,9 @@ mod keybinding_tests;
 
 const ANNOUNCEMENT_TIP_URL: &str =
     "https://raw.githubusercontent.com/openai/maxcode/main/announcement_tip.toml";
+/// The upstream announcement feed points at OpenAI's repository. The fork has
+/// no matching feed and does not fetch it by default.
+const ANNOUNCEMENT_TIPS_ENABLED: bool = false;
 
 const IS_MACOS: bool = cfg!(target_os = "macos");
 const IS_WINDOWS: bool = cfg!(target_os = "windows");
@@ -179,7 +182,7 @@ pub(crate) mod announcement {
 
     /// Prewarm the cache of the announcement tip.
     pub(crate) fn prewarm(http_client_factory: HttpClientFactory) {
-        if ANNOUNCEMENT_TIP.get().is_some() {
+        if !super::ANNOUNCEMENT_TIPS_ENABLED || ANNOUNCEMENT_TIP.get().is_some() {
             return;
         }
         tokio::spawn(async move {

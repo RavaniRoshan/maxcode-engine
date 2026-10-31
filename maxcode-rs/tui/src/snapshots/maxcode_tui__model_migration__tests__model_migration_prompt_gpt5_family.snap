@@ -8,6 +8,6 @@ expression: terminal.backend()
   We recommend switching from gpt-5 to gpt-5.1.
 
   Broad world knowledge with strong general reasoning. Learn
-  more about gpt-5.1 at https://www.maxcode.com/models/gpt-5.1
+  more about gpt-5.1 at https://github.com/RavaniRoshan/maxcode-engine/models/gpt-5.1
 
   enter/esc continue · ⌃c quit

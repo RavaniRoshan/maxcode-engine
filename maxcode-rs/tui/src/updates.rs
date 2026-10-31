@@ -59,7 +59,7 @@ pub fn get_upgrade_version(config: &Config) -> Option<String> {
 
 // We use the latest version from the cask if installation is via homebrew - homebrew does not immediately pick up the latest release and can lag behind.
 const HOMEBREW_CASK_API_URL: &str = "https://formulae.brew.sh/api/cask/maxcode.json";
-const LATEST_RELEASE_URL: &str = "https://api.github.com/repos/openai/maxcode/releases/latest";
+const LATEST_RELEASE_URL: &str = "https://api.github.com/repos/RavaniRoshan/maxcode-engine/releases/latest";
 
 #[derive(Deserialize, Debug, Clone)]
 struct ReleaseInfo {

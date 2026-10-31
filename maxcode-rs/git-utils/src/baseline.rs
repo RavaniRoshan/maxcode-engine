@@ -15,7 +15,7 @@ use tokio::task;
 use crate::operations::run_git_for_status;
 
 const BASELINE_COMMIT_MESSAGE: &str =
-    "Initialize Maxcode git baseline\n\nCo-authored-by: Maxcode <noreply@openai.com>";
+    "Initialize Maxcode git baseline\n\nCo-authored-by: Maxcode <noreply@maxcode-engine.invalid>";
 
 /// File-level change status between a git baseline and the current directory.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -162,7 +162,7 @@ fn write_index_from_head(root: &Path) -> anyhow::Result<()> {
 fn maxcode_signature() -> gix::actor::Signature {
     gix::actor::Signature {
         name: "Maxcode".into(),
-        email: "noreply@openai.com".into(),
+        email: "noreply@maxcode-engine.invalid".into(),
         time: gix::date::Time {
             seconds: chrono::Utc::now().timestamp(),
             offset: 0,

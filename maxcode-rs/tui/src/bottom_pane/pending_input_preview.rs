@@ -261,7 +261,7 @@ mod tests {
 
     #[test]
     fn oversized_preview_urls_keep_complete_destinations() {
-        let url = "https://github.com/openai/maxcode/pull/12345?diff=split";
+        let url = "https://github.com/RavaniRoshan/maxcode-engine/pull/12345?diff=split";
         for section in 0..3 {
             let mut queue = PendingInputPreview::new();
             let messages = match section {

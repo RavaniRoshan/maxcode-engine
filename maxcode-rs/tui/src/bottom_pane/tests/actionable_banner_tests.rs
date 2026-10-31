@@ -261,7 +261,7 @@ fn information_banner_preserves_input_and_honors_dismissal() {
 
 #[test]
 fn banner_copy_preserves_wrapped_url_destinations() {
-    let url = "https://github.com/openai/maxcode/pull/12345?diff=split";
+    let url = "https://github.com/RavaniRoshan/maxcode-engine/pull/12345?diff=split";
     let (tx, _rx) = unbounded_channel();
     let mut pane = test_pane(AppEventSender::new(tx));
     pane.set_inline_banner(Some(ActionableBanner {

@@ -2645,7 +2645,7 @@ mod tests {
 
     #[test]
     fn form_prompt_preserves_the_complete_wrapped_url_destination() {
-        let url = "https://github.com/openai/maxcode/pull/12345?diff=split";
+        let url = "https://github.com/RavaniRoshan/maxcode-engine/pull/12345?diff=split";
         let (tx, _rx) = test_sender();
         let request = from_form_request(
             ThreadId::default(),

@@ -55,7 +55,7 @@ fn wide_titles_preserve_reverse_video_selection_and_dim_index() {
 
 #[test]
 fn wrapped_hook_command_preserves_the_complete_url_destination() {
-    let url = "https://github.com/openai/maxcode/pull/12345?diff=split&review=complete-destination";
+    let url = "https://github.com/RavaniRoshan/maxcode-engine/pull/12345?diff=split&review=complete-destination";
     let (tx_raw, _rx) = unbounded_channel::<AppEvent>();
     let mut url_hook = hook(
         "path:review",
@@ -87,7 +87,7 @@ fn wrapped_hook_command_preserves_the_complete_url_destination() {
         .collect::<String>();
     assert_eq!(
         linked,
-        "https://github.com/openai/maxcode/pull/12345?diff=split&review=complete-"
+        "https://github.com/RavaniRoshan/maxcode-engine/pull/12345?diff=split&review=complete-"
     );
     let ellipses = buf
         .content

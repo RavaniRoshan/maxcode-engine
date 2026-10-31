@@ -628,7 +628,7 @@ struct AppServerCommand {
     /// enabled = false
     /// ```
     ///
-    /// See https://developers.openai.com/maxcode/config-advanced/#metrics for more details.
+    /// See https://github.com/RavaniRoshan/maxcode-engine for more details.
     #[arg(long = "analytics-default-enabled")]
     analytics_default_enabled: bool,
 
@@ -876,7 +876,7 @@ fn resolve_windows_update_command_from_path(
         std::env::join_paths(std::env::split_paths(path_env).filter(|path| path.is_absolute()))?;
     if path_env.is_empty() {
         anyhow::bail!(
-            "Could not find an absolute update command `{command}` on PATH. Please update manually: https://developers.openai.com/maxcode/cli/"
+            "Could not find an absolute update command `{command}` on PATH. Please update manually: https://github.com/RavaniRoshan/maxcode-engine/releases"
         );
     }
     which::which_in_global(command, Some(&path_env))?
@@ -896,7 +896,7 @@ fn run_update_command() -> anyhow::Result<()> {
     {
         let Some(action) = maxcode_tui::get_update_action() else {
             anyhow::bail!(
-                "Could not detect the Maxcode installation method. Please update manually: https://developers.openai.com/maxcode/cli/"
+                "Could not detect the Maxcode installation method. Please update manually: https://github.com/RavaniRoshan/maxcode-engine/releases"
             );
         };
         run_update_action(action, /*cli_executable*/ None)
@@ -2881,7 +2881,7 @@ mod tests {
         assert_eq!(
             err.to_string(),
             format!(
-                "Could not find an absolute update command `{command}` on PATH. Please update manually: https://developers.openai.com/maxcode/cli/"
+                "Could not find an absolute update command `{command}` on PATH. Please update manually: https://github.com/RavaniRoshan/maxcode-engine/releases"
             )
         );
     }

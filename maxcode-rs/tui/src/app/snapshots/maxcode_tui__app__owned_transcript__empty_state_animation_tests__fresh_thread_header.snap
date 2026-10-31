@@ -4,7 +4,7 @@ expression: "format!(\"enabled:\\n{}\\n---\\ndisabled:\\n{}\", text(after), text
 ---
 enabled:
 
-  >_ OpenAI Maxcode (v0.0.0)
+  >_ maxcode (v0.0.0)
      /tmp/project
 
 
@@ -50,7 +50,7 @@ enabled:
 ---
 disabled:
 
-  >_ OpenAI Maxcode (v0.0.0)
+  >_ maxcode (v0.0.0)
      /tmp/project
 
 

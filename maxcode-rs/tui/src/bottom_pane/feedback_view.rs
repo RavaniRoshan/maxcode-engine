@@ -15,7 +15,7 @@ use crate::history_cell;
 use super::popup_consts::standard_popup_hint_line;
 
 const BASE_CLI_BUG_ISSUE_URL: &str =
-    "https://github.com/openai/maxcode/issues/new?template=3-cli.yml";
+    "https://github.com/RavaniRoshan/maxcode-engine/issues/new";
 /// Internal routing link for employee feedback follow-ups. This must not be shown to external users.
 const MAXCODE_FEEDBACK_INTERNAL_URL: &str = "http://go/maxcode-feedback-internal";
 
@@ -125,7 +125,7 @@ fn issue_url_for_category(
         | FeedbackCategory::Other => Some(match feedback_audience {
             FeedbackAudience::OpenAiEmployee => slack_feedback_url(thread_id),
             FeedbackAudience::External => {
-                format!("{BASE_CLI_BUG_ISSUE_URL}&steps=Uploaded%20thread:%20{thread_id}")
+                format!("{BASE_CLI_BUG_ISSUE_URL}?steps=Uploaded%20thread:%20{thread_id}")
             }
         }),
         FeedbackCategory::GoodResult => None,
@@ -499,7 +499,7 @@ mod tests {
         );
         let bug_url_non_employee =
             issue_url_for_category(FeedbackCategory::Bug, "t", FeedbackAudience::External);
-        let expected_external_url = "https://github.com/openai/maxcode/issues/new?template=3-cli.yml&steps=Uploaded%20thread:%20t";
+        let expected_external_url = "https://github.com/RavaniRoshan/maxcode-engine/issues/new?steps=Uploaded%20thread:%20t";
         assert_eq!(bug_url_non_employee.as_deref(), Some(expected_external_url));
     }
 
@@ -516,7 +516,7 @@ mod tests {
         );
         assert_eq!(
             rendered,
-            "• Feedback uploaded. Please open an issue using the following URL:\n\n  https://github.com/openai/maxcode/issues/new?template=3-cli.yml&steps=Uploaded%20thread:%20thread-1\n\n  Or mention your thread ID thread-1 in an existing issue."
+            "• Feedback uploaded. Please open an issue using the following URL:\n\n  https://github.com/RavaniRoshan/maxcode-engine/issues/new?steps=Uploaded%20thread:%20thread-1\n\n  Or mention your thread ID thread-1 in an existing issue."
         );
     }
 

@@ -37,7 +37,7 @@ prefix label: false, wrapped label: false, single line: true
 日 本 語  https://github.com/opena… https://exampl…
 
 prefix label: true, wrapped label: true, single line: false
-1. 日 本 語  https://github.com/openai/maxcode/
+1. 日 本 語  https://github.com/RavaniRoshan/maxcode-engine/
 pull/12345?diff=split
 
 
@@ -51,10 +51,10 @@ pull/12345?diff=split
 
 
 prefix label: true, wrapped label: true, single line: true
-1. 日 本 語  https://github.com/openai/maxcode/pull/…
+1. 日 本 語  https://github.com/RavaniRoshan/maxcode-engine/pull/…
 
 prefix label: true, wrapped label: false, single line: false
-1. 日 本 語  https://github.com/openai/maxcode/
+1. 日 本 語  https://github.com/RavaniRoshan/maxcode-engine/
 pull/12345?diff=split
 
 
@@ -68,4 +68,4 @@ pull/12345?diff=split
 
 
 prefix label: true, wrapped label: false, single line: true
-1. 日 本 語  https://github.com/openai/maxcode/pull/…
+1. 日 本 語  https://github.com/RavaniRoshan/maxcode-engine/pull/…

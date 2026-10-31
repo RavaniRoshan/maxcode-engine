@@ -3,7 +3,7 @@ source: tui/src/chatwidget/tests/permissions.rs
 expression: "render_bottom_popup(&chat, 100)"
 ---
   Set up the Maxcode agent sandbox to protect your files and control network access. Learn more
-  <https://developers.openai.com/maxcode/windows>
+  <https://github.com/RavaniRoshan/maxcode-engine
 
 
 › 1. Use non-admin sandbox (higher risk if prompt injected)

@@ -46,12 +46,12 @@ use wiremock::matchers::path;
 const DEFAULT_READ_TIMEOUT: Duration = Duration::from_secs(60);
 #[cfg(not(any(target_os = "macos", windows)))]
 const DEFAULT_READ_TIMEOUT: Duration = Duration::from_secs(10);
-const COMMIT_ATTRIBUTION: &str = "Co-authored-by: Maxcode <noreply@openai.com>";
-const PR_ATTRIBUTION: &str = "Generated with [Maxcode](https://openai.com/maxcode/).";
+const COMMIT_ATTRIBUTION: &str = "Co-authored-by: Maxcode <noreply@maxcode-engine.invalid>";
+const PR_ATTRIBUTION: &str = "Generated with [Maxcode](https://github.com/RavaniRoshan/maxcode-engine).";
 const ATTRIBUTION_DISABLED: &str = "attribution is disabled for the current workspace";
 const LEGACY_COMMIT_ATTRIBUTION_INSTRUCTIONS: &str = "\
 When you write or edit a git commit message, ensure the message ends with this trailer exactly once:
-Co-authored-by: Maxcode <noreply@openai.com>
+Co-authored-by: Maxcode <noreply@maxcode-engine.invalid>
 
 Rules:
 - Keep existing trailers and append this trailer at the end if missing.

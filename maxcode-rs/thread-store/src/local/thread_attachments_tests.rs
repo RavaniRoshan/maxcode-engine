@@ -34,7 +34,7 @@ async fn thread_attachments_require_a_supported_sqlite_store() {
                 thread_id,
                 attachment_type: "pull_request".to_string(),
                 identity_key: "openai/maxcode#1".to_string(),
-                payload: json!({"url": "https://github.com/openai/maxcode/pull/1"}),
+                payload: json!({"url": "https://github.com/RavaniRoshan/maxcode-engine/pull/1"}),
             })
             .await,
         Err(ThreadStoreError::Unsupported {
@@ -104,7 +104,7 @@ async fn unloaded_thread_attachments_support_listing_and_removal() {
         thread_id: first_thread_id,
         attachment_type: "pull_request".to_string(),
         identity_key: "openai/maxcode#1".to_string(),
-        payload: json!({"url": "https://github.com/openai/maxcode/pull/1"}),
+        payload: json!({"url": "https://github.com/RavaniRoshan/maxcode-engine/pull/1"}),
     };
     let AddThreadAttachmentOutcome::Created(first_attachment) = store
         .add_thread_attachment(params.clone())
@@ -124,7 +124,7 @@ async fn unloaded_thread_attachments_support_listing_and_removal() {
     let second_params = AddThreadAttachmentParams {
         thread_id: first_thread_id,
         identity_key: "openai/maxcode#2".to_string(),
-        payload: json!({"url": "https://github.com/openai/maxcode/pull/2"}),
+        payload: json!({"url": "https://github.com/RavaniRoshan/maxcode-engine/pull/2"}),
         ..params.clone()
     };
     let AddThreadAttachmentOutcome::Created(second_attachment) = store
@@ -267,7 +267,7 @@ async fn attachment_mutations_wait_for_exclusive_thread_lifecycle_operations() {
         thread_id,
         attachment_type: "pull_request".to_string(),
         identity_key: "openai/maxcode#1".to_string(),
-        payload: json!({"url": "https://github.com/openai/maxcode/pull/1"}),
+        payload: json!({"url": "https://github.com/RavaniRoshan/maxcode-engine/pull/1"}),
     }));
     tokio::select! {
         biased;
@@ -331,7 +331,7 @@ async fn attachment_mutations_queued_behind_deletion_reject_deleted_threads() {
             thread_id,
             attachment_type: "pull_request".to_string(),
             identity_key: "openai/maxcode#2".to_string(),
-            payload: json!({"url": "https://github.com/openai/maxcode/pull/2"}),
+            payload: json!({"url": "https://github.com/RavaniRoshan/maxcode-engine/pull/2"}),
         });
         let mut removal = store.remove_thread_attachment(RemoveThreadAttachmentParams {
             thread_id,
@@ -499,7 +499,7 @@ async fn store_with_attachment_owners(
                 thread_id,
                 attachment_type: "pull_request".to_string(),
                 identity_key: "openai/maxcode#1".to_string(),
-                payload: json!({"url": "https://github.com/openai/maxcode/pull/1"}),
+                payload: json!({"url": "https://github.com/RavaniRoshan/maxcode-engine/pull/1"}),
             })
             .await
             .expect("attach attachment before deleting its owner");

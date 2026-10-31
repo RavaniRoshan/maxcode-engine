@@ -6,7 +6,7 @@ expression: "crate::terminal_hyperlinks::strip_osc8(&buffer_text(&buffer))"
 
   2 of 2
   Review this change
-  (https://github.com/openai/maxcode/
+  (https://github.com/RavaniRoshan/maxcode-engine/
   pull/12345?diff=split)?
 
   › 1. Named

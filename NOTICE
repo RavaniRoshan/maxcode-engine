@@ -1,10 +1,21 @@
 maxcode-engine
 Copyright 2026 maxcode contributors
 
-This product is a fork of the project identified below.
+Modification notice under Apache License 2.0, section 4(b)
+
+This distribution is a modified fork of OpenAI Codex, tag rust-v0.165.0,
+commit 360319d8dee62d87e2d59fc0c21805d79519cfed
+(https://github.com/openai/codex).
+
+Changes: the Rust workspace, crates, binary, environment variables, and
+user-visible strings were renamed from Codex to maxcode-engine; upstream SDK,
+CI, Bazel, third-party voice/V8, and some packaging and documentation files
+were removed; see CHANGES.md for the exhaustive diff.
+
+The upstream copyright and NOTICE text below are preserved verbatim.
 
 OpenAI Codex
-Copyright 2025 OpenAI
+Copyright 2025 OpenAI
 
 This project includes code derived from [Ratatui](https://github.com/ratatui/ratatui), licensed under the MIT license.
 Copyright (c) 2016-2022 Florian Dehau

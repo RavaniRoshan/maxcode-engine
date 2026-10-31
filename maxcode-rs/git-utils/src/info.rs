@@ -905,16 +905,16 @@ mod tests {
     fn canonicalize_git_remote_url_normalizes_github_variants() {
         for remote in [
             "git@github.com:OpenAI/Maxcode.git",
-            "ssh://git@github.com/openai/maxcode.git",
+            "ssh://git@github.com/RavaniRoshan/maxcode-engine.git",
             "ssh://git@github.com:22/OpenAI/Maxcode.git",
-            "https://github.com/openai/maxcode.git",
+            "https://github.com/RavaniRoshan/maxcode-engine.git",
             "https://github.com:443/openai/maxcode.git",
-            "https://token@github.com/openai/maxcode/",
+            "https://token@github.com/RavaniRoshan/maxcode-engine/",
             "github.com/OpenAI/Maxcode.git",
         ] {
             assert_eq!(
                 canonicalize_git_remote_url(remote),
-                Some("github.com/openai/maxcode".to_string())
+                Some("github.com/RavaniRoshan/maxcode-engine".to_string())
             );
         }
     }

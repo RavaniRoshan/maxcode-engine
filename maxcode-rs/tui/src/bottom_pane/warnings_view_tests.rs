@@ -172,7 +172,7 @@ fn warnings_keep_current_and_next_without_dismissing_unvisited_pages() {
 
 #[test]
 fn warning_links_preserve_destinations_when_wrapped_and_scrolled() {
-    let url = "https://github.com/openai/maxcode/pull/12345?diff=split";
+    let url = "https://github.com/RavaniRoshan/maxcode-engine/pull/12345?diff=split";
     let (tx, _) = unbounded_channel();
     let mut data = entries();
     data[0].details = format!("Review {url} before continuing.");

@@ -4,7 +4,7 @@ assertion_line: 6513
 expression: rendered
 ---
 
-  >_ OpenAI Maxcode (v0.0.0)
+  >_ maxcode (v0.0.0)
      <thread cwd>
 
 

@@ -168,7 +168,7 @@ async fn autodetect_sanitizes_credential_bearing_git_origins() {
         &HeaderMap::new(),
         /*desired_label*/ None,
         &[SanitizedGitUrl::try_from(
-            "https://alice:synthetic-git-secret@github.com/openai/maxcode.git",
+            "https://alice:synthetic-git-secret@github.com/RavaniRoshan/maxcode-engine.git",
         )
         .expect("valid Git remote")],
     )
@@ -269,7 +269,7 @@ async fn list_requests_exact_repository_and_global_endpoints_and_merges_results(
         BASE_URL,
         &HeaderMap::new(),
         &[
-            SanitizedGitUrl::try_from("https://github.com/openai/maxcode.git")
+            SanitizedGitUrl::try_from("https://github.com/RavaniRoshan/maxcode-engine.git")
                 .expect("valid Git remote"),
         ],
     )

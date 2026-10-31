@@ -1460,7 +1460,7 @@ mod tests {
 
     #[test]
     fn approval_headers_preserve_wrapped_url_destinations() {
-        let url = "https://github.com/openai/maxcode/pull/12345?diff=split";
+        let url = "https://github.com/RavaniRoshan/maxcode-engine/pull/12345?diff=split";
         for mut request in [
             make_exec_request(),
             make_permissions_request(),

@@ -47,9 +47,9 @@ rustPlatform.buildRustPackage (_: {
   };
 
   meta = with lib; {
-    description = "OpenAI Maxcode command‑line interface rust implementation";
+    description = "maxcode-engine command‑line interface rust implementation";
     license = licenses.asl20;
-    homepage = "https://github.com/openai/maxcode";
+    homepage = "https://github.com/RavaniRoshan/maxcode-engine";
     mainProgram = "maxcode";
   };
 })

@@ -2031,11 +2031,11 @@ fn table_renders_stacked_key_value_records_when_path_column_becomes_too_narrow_s
 fn table_renders_records_when_multiple_prose_columns_are_starved_snapshot() {
     let md = r#"| Issue | Activity | Complexity | Why start |
 | --- | ---: | ---: | --- |
-| [#24485: newline shortcut fails in PyCharm terminal on Windows](https://github.com/openai/maxcode/issues/24485) | `+1` 0, substantive comments 0 | Low | New, deterministic regression range; localized composer/keymap path. |
-| [#23926: Vim composer `e` stalls at word end](https://github.com/openai/maxcode/issues/23926) | `+1` 0, comments 0 | Low | Standing best quick win; deterministic motion bug. |
-| [#23651: Zellij scrollback misses Maxcode transcript over SSH](https://github.com/openai/maxcode/issues/23651) | `+1` 3, human comments 2 | Medium | Clear regression and strong scrollback evidence. |
-| [#23740: raw ANSI/control sequences in Windows Terminal](https://github.com/openai/maxcode/issues/23740) | `+1` 7, human comments 7 | Medium | Highest activity; established Windows rendering regression family. |
-| [#24527: typing lag increases with session length](https://github.com/openai/maxcode/issues/24527) | `+1` 0, substantive comments 0 | Medium | New TUI-visible performance report; needs profiling before implementation. |
+| [#24485: newline shortcut fails in PyCharm terminal on Windows](https://github.com/RavaniRoshan/maxcode-engine/issues/24485) | `+1` 0, substantive comments 0 | Low | New, deterministic regression range; localized composer/keymap path. |
+| [#23926: Vim composer `e` stalls at word end](https://github.com/RavaniRoshan/maxcode-engine/issues/23926) | `+1` 0, comments 0 | Low | Standing best quick win; deterministic motion bug. |
+| [#23651: Zellij scrollback misses Maxcode transcript over SSH](https://github.com/RavaniRoshan/maxcode-engine/issues/23651) | `+1` 3, human comments 2 | Medium | Clear regression and strong scrollback evidence. |
+| [#23740: raw ANSI/control sequences in Windows Terminal](https://github.com/RavaniRoshan/maxcode-engine/issues/23740) | `+1` 7, human comments 7 | Medium | Highest activity; established Windows rendering regression family. |
+| [#24527: typing lag increases with session length](https://github.com/RavaniRoshan/maxcode-engine/issues/24527) | `+1` 0, substantive comments 0 | Medium | New TUI-visible performance report; needs profiling before implementation. |
 "#;
     let text = render_markdown_text_with_width(md, Some(/*width*/ 76));
 
