@@ -34,9 +34,10 @@ Scope: user-visible strings in `maxcode-rs/**`, plus the root `README.md` and
 | `maxcode-rs/tui/src/tooltips.rs` | Announcement feed fetched from `raw.githubusercontent.com/openai/maxcode` | Fetch disabled (`ANNOUNCEMENT_TIPS_ENABLED = false`) |
 | Test snapshots | `OpenAI Maxcode`, `OpenAI's command-line...`, `Use your own OpenAI API key` | Source-aligned `maxcode`, `maxcode-engine`, `Use your own API key` |
 
-The mechanical pass also replaced `github.com/openai/maxcode` and
-`https://openai.com/maxcode/` in 47 source/doc/test files. It did **not** touch
-`github.com/openai/codex` in the root attribution.
+The mechanical passes replaced `github.com/openai/maxcode`,
+`https://openai.com/maxcode/`, and `developers.openai.com/maxcode` across
+source, docs, and snapshots. They did **not** touch `github.com/openai/codex`
+in the root attribution.
 
 ## Retained on purpose (third-party references)
 
