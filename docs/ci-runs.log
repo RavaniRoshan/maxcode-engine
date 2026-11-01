@@ -131,3 +131,71 @@ v8-canary          10    5                    16s           6h19m18s
 # - No run has the name "Release": the release workflow has never run (git tag count is 0).
 # - blocking-ci and v8-canary ran only in response to Dependabot pull_request events.
 # - CLA Assistant ran as pull_request_target and every run was "skipped" in 1-6 seconds.
+
+# Release-workflow prerequisites, captured 2026-11-01T12:04:56Z
+
+$ cargo metadata --locked --format-version 1 --no-deps >/dev/null; echo exit=$?
+exit=0
+
+$ git ls-files Cargo.lock; sha256sum Cargo.lock
+Cargo.lock
+37f945cb88aaa7a271c68e7539b3d254d410ff614c9071c122975b991d65300d  Cargo.lock
+
+$ cargo metadata --no-deps | package maxcode-cli targets
+package: maxcode-cli 0.165.0
+ target: maxcode_cli ['lib']
+ target: logs_client ['bin']
+ target: maxcode-engine ['bin']
+ target: app_server ['test']
+ target: app_server_daemon ['test']
+ target: app_server_daemon_package ['test']
+ target: app_server_daemon_windows ['test']
+ target: cloud_auth ['test']
+ target: cloud_config ['test']
+ target: daemon_startup ['test']
+ target: daemon_telemetry ['test']
+ target: debug_clear_memories ['test']
+ target: debug_models ['test']
+ target: delete ['test']
+ target: doctor_enterprise_network ['test']
+ target: doctor_path_safety ['test']
+ target: exec_server ['test']
+ target: exec_server_websocket_auth ['test']
+ target: execpolicy ['test']
+ target: features ['test']
+ target: login ['test']
+ target: marketplace_add ['test']
+ target: marketplace_remove ['test']
+ target: marketplace_upgrade ['test']
+ target: mcp_add_remove ['test']
+ target: mcp_list ['test']
+ target: mcp_login ['test']
+ target: plugin_cli ['test']
+ target: queue ['test']
+ target: rollout_trace ['test']
+ target: sandbox_cloud_config ['test']
+ target: sandbox_network_proxy ['test']
+ target: sandbox_tty ['test']
+ target: sandbox_uninstall ['test']
+ target: update ['test']
+ target: worktree ['test']
+ target: build-script-build ['custom-build']
+
+# Release-workflow Linux dependency resolution, captured 2026-11-01T12:05:47Z
+
+$ cargo metadata --locked --filter-platform x86_64-unknown-linux-gnu --format-version 1   # exit=0
+# Reachability from package maxcode-cli computed over resolve.nodes deps:
+openssl-sys        reachable
+openssl            reachable
+native-tls         reachable
+libsqlite3-sys     reachable
+protoc-bin-vendored reachable
+
+# Edges into those packages:
+maxcode-cli 0.165.0 -> libsqlite3-sys
+maxcode-code-mode-protocol 0.165.0 -> protoc-bin-vendored
+maxcode-state 0.165.0 -> libsqlite3-sys
+native-tls 0.2.14 -> openssl
+native-tls 0.2.14 -> openssl-sys
+openssl 0.10.75 -> openssl-sys
+sqlx-sqlite 0.9.0 -> libsqlite3-sys

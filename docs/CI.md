@@ -58,5 +58,47 @@ Why none of them can work here:
 ## Decision for this step
 
 Disable nothing further: there is nothing left to disable. The only remaining
-workflow is the fork's own release workflow, which is assessed separately in
-[`docs/CI.md`](#release-workflow) below.
+workflow is the fork's own release workflow; it is assessed in the next section.
+
+## Release workflow
+
+`.github/workflows/release.yml` is the fork's own workflow, not upstream's. It is
+kept.
+
+| Property | Value |
+|---|---|
+| Trigger | `push` of a tag matching `v*` |
+| Jobs | `build` matrix (`linux-x86_64` on `ubuntu-latest`, `macos-arm64` on `macos-14`), then `publish-release` on `ubuntu-latest` |
+| Job timeout | 120 minutes (`timeout-minutes: 120`) |
+| Permissions | `contents: write`; uses the built-in `GITHUB_TOKEN`, no repository secrets |
+| Assets | `maxcode-engine-linux-x86_64`, `maxcode-engine-macos-arm64`, and a combined `SHA256SUMS` |
+
+Build command:
+
+```bash
+cargo build --release --locked -p maxcode-cli --bin maxcode-engine --target <target>
+```
+
+Prerequisites checked on 2026-11-01, all recorded in
+[`docs/ci-runs.log`](ci-runs.log):
+
+- `maxcode-cli 0.165.0` exposes a `maxcode-engine` binary target.
+- `Cargo.lock` is tracked (`sha256 37f945cb…`) and `cargo metadata --locked`
+  exits `0`, so `--locked` will resolve against the committed lock.
+- On `x86_64-unknown-linux-gnu`, `libsqlite3-sys` is reached through
+  `sqlx-sqlite` with the `sqlite-bundled` feature
+  (`maxcode-rs/Cargo.toml:501`), and `protoc-bin-vendored` is reached through
+  `maxcode-code-mode-protocol`. Neither system SQLite nor a system `protoc` is
+  needed.
+- `openssl` / `openssl-sys` are reached through `native-tls` on the same target.
+  The GNU build therefore expects OpenSSL development headers on the runner.
+  GitHub's `ubuntu-latest` image normally provides them, but this repository has
+  no run proving it. This is the most likely way the first tagged build fails.
+- The macOS job uses `macos-14`, which is arm64, matching `aarch64-apple-darwin`.
+
+Not verified: the workflow has never run (`git tag` count is `0`, no `Release`
+run in history), so neither success nor wall-clock time is measured. The 120
+minute figure is the configured timeout, not an observation. If the first tag
+exceeds it, the fix is to raise or split the timeout then, with the run as
+evidence.
+
