@@ -128,3 +128,16 @@ $ wc -l docs/upstream-diff.tsv
 # components and produced 1,496; that rule is not the one used in CHANGES.md.
 renames whose path below the top level differs: 1645
 renames whose path below the top level is identical: 7114
+
+# Derived counts cited in docs/CI.md and docs/LICENSE-REVIEW.md
+# Captured 2026-11-01 after the clone was deleted; both are derived from data
+# already committed in this log and in docs/upstream-diff.tsv.
+
+$ count .yml entries in the .github/workflows listing recorded above
+28
+
+$ python3: true removals under third_party/voice/ and third_party/v8/ (same pairing rule as CHANGES.md)
+third_party/voice/ 46
+third_party/v8/ 22
+patches/ 36
+.github/workflows/ 31
