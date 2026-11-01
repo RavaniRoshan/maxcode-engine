@@ -1,0 +1,53 @@
+# Branding evidence
+# Captured 2026-11-01T12:51:14Z
+# Binary: maxcode-rs/target/dev-small/maxcode-engine
+# Built from git HEAD 20fa7d611355e2a070f1a0d25f11f824126374a0 with: cargo build --profile dev-small -p maxcode-cli --bin maxcode-engine
+# Build result: Finished dev-small profile in 2m 25s
+
+$ ./maxcode-rs/target/dev-small/maxcode-engine --version
+maxcode-engine 0.1.0
+
+$ ./maxcode-rs/target/dev-small/maxcode-engine --help | head -8
+Maxcode CLI
+
+If no subcommand is specified, options will be forwarded to the interactive CLI.
+
+Usage: maxcode-engine [OPTIONS] [PROMPT]
+       maxcode-engine [OPTIONS] <COMMAND> [ARGS]
+
+Commands:
+
+$ ./maxcode-rs/target/dev-small/maxcode-engine --help | grep -nE "Codex|OpenAI"
+(no matches)
+
+$ ./maxcode-rs/target/dev-small/maxcode-engine exec --help | grep -nE "Codex|OpenAI"
+83:          Request an experimental Cyber access program for this turn (OpenAI provider only). Omit to
+
+$ ./maxcode-rs/target/dev-small/maxcode-engine login --help | grep -nE "Codex|OpenAI"
+(no matches)
+
+$ ./maxcode-rs/target/dev-small/maxcode-engine update --help | grep -nE "Codex|OpenAI"
+(no matches)
+
+$ ./maxcode-rs/target/dev-small/maxcode-engine doctor --help | grep -nE "Codex|OpenAI"
+(no matches)
+
+$ git grep -c "Codex" -- maxcode-rs | wc -l
+0
+
+$ git grep -l "OpenAI" -- maxcode-rs | wc -l
+201
+
+$ git grep -c "OpenAI" -- maxcode-rs | awk -F: "{s+=\$2} END {print s}"
+450
+
+## Remaining user-visible upstream product text in TUI tooltips
+$ grep -n "chatgpt.com/maxcode\|run \`chatgpt\`" maxcode-rs/tui/src/tooltips.rs
+25:const WINDOWS_APP_TOOLTIP: &str = "Use the **desktop app**. Install it from https://chatgpt.com/maxcode?app-landing-page=true and run `maxcode app`.";
+28:const LINUX_APP_TOOLTIP: &str = "Use the **desktop app**. Install it from https://learn.chatgpt.com/docs/linux/linux-app and run `chatgpt`.";
+
+## Snapshot tests that pin those strings
+$ ls maxcode-rs/tui/src/snapshots | grep desktop_app_tip
+maxcode_tui__tooltips__tests__desktop_app_tip_linux.snap
+maxcode_tui__tooltips__tests__desktop_app_tip_macos.snap
+maxcode_tui__tooltips__tests__desktop_app_tip_windows.snap

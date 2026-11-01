@@ -1,3 +1,5 @@
+Optional engine for maxcode. Stock Codex 0.165 or newer also works.
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/RavaniRoshan/maxcode/main/assets/max.svg" width="120" height="135" alt="Max, the maxcode mascot">
 </p>
