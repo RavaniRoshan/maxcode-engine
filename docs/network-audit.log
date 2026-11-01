@@ -1,0 +1,217 @@
+# Outbound network audit evidence
+# Captured 2026-11-01T12:12:01Z. Secrets are redacted before capture;
+# the Statsig client key and the Sentry DSN credential never appear in full.
+
+## Statsig OTLP exporter (maxcode-rs/otel/src/config.rs)
+$ grep -n STATSIG_OTLP_HTTP_ENDPOINT: &str maxcode-rs/otel/src/config.rs
+9:pub(crate) const STATSIG_OTLP_HTTP_ENDPOINT: &str = "https://ab.chatgpt.com/otlp/v1/metrics";
+
+$ grep -n STATSIG_API_KEY: &str maxcode-rs/otel/src/config.rs
+11:pub(crate) const STATSIG_API_KEY: &str = "client-<redacted>";
+
+$ grep -n endpoint: STATSIG_OTLP_HTTP_ENDPOINT maxcode-rs/otel/src/config.rs
+25:                endpoint: STATSIG_OTLP_HTTP_ENDPOINT.to_string(),
+
+$ grep -n STATSIG_API_KEY.to_string maxcode-rs/otel/src/config.rs
+28:                    STATSIG_API_KEY.to_string(),
+
+## OTel defaults (maxcode-rs/config/src/types.rs)
+$ grep -n exporter: OtelExporterKind::None maxcode-rs/config/src/types.rs
+680:            exporter: OtelExporterKind::None,
+681:            trace_exporter: OtelExporterKind::None,
+682:            metrics_exporter: OtelExporterKind::None,
+
+$ grep -n metrics_exporter: OtelExporterKind::None maxcode-rs/config/src/types.rs
+682:            metrics_exporter: OtelExporterKind::None,
+
+## Analytics event destination (maxcode-rs/analytics/src/client.rs)
+$ grep -n fn from_base_url maxcode-rs/analytics/src/client.rs
+128:    fn from_base_url(base_url: String) -> Self {
+133:    fn from_base_url_and_capture_file(base_url: String, capture_file: Option<PathBuf>) -> Self {
+
+$ grep -n url: format! maxcode-rs/analytics/src/client.rs
+154:            url: format!("{base_url}/maxcode/analytics-events/events"),
+
+$ grep -n analytics_enabled == Some(true) maxcode-rs/analytics/src/client.rs
+321:            queue: (analytics_enabled == Some(true))
+
+$ grep -n cfg(not(debug_assertions)) maxcode-rs/analytics/src/client.rs
+149:        #[cfg(not(debug_assertions))]
+167:    #[cfg(not(debug_assertions))]
+
+## Startup update check (maxcode-rs/core/src/config/mod.rs)
+$ grep -n check_for_update_on_startup.unwrap_or maxcode-rs/core/src/config/mod.rs
+4270:        let check_for_update_on_startup = cfg.check_for_update_on_startup.unwrap_or(false);
+
+## TUI analytics consent default (maxcode-rs/tui/src/startup_orchestration.rs)
+$ grep -n default_analytics_enabled maxcode-rs/tui/src/startup_orchestration.rs
+673:            /*default_analytics_enabled*/ false,
+
+## Announcement feed (maxcode-rs/tui/src/tooltips.rs)
+$ grep -n ANNOUNCEMENT_TIP_URL maxcode-rs/tui/src/tooltips.rs
+16:const ANNOUNCEMENT_TIP_URL: &str =
+167:    use crate::tooltips::ANNOUNCEMENT_TIP_URL;
+257:            .get(ANNOUNCEMENT_TIP_URL)
+
+$ grep -n ANNOUNCEMENT_TIPS_ENABLED maxcode-rs/tui/src/tooltips.rs
+20:const ANNOUNCEMENT_TIPS_ENABLED: bool = false;
+185:        if !super::ANNOUNCEMENT_TIPS_ENABLED || ANNOUNCEMENT_TIP.get().is_some() {
+
+## Feedback upload (maxcode-rs/feedback)
+$ grep -n const SENTRY_DSN maxcode-rs/feedback/src/lib.rs
+62:const SENTRY_DSN: &str =
+
+$ grep -n SENTRY_DSN maxcode-rs/feedback/src/report_upload.rs
+23:use crate::SENTRY_DSN;
+57:            dsn: SENTRY_DSN
+
+$ grep -n pub enabled: Option<bool> maxcode-rs/config/src/types.rs
+251:    pub enabled: Option<bool>,
+258:    pub enabled: Option<bool>,
+483:    pub enabled: Option<bool>,
+1118:    pub enabled: Option<bool>,
+
+## Update, Homebrew, desktop-app and npm probes
+$ grep -n https:// maxcode-rs/cli/src/doctor/updates.rs | head -12
+36:const GITHUB_LATEST_RELEASE_URL: &str = "https://api.github.com/repos/RavaniRoshan/maxcode-engine/releases/latest";
+37:const HOMEBREW_CASK_API_URL: &str = "https://formulae.brew.sh/api/cask/maxcode.json";
+39:const DESKTOP_UPDATE_URL: &str = "https://persistent.oaistatic.com/maxcode-app-prod/appcast-x64.xml";
+41:const DESKTOP_UPDATE_URL: &str = "https://persistent.oaistatic.com/maxcode-app-prod/appcast.xml";
+43:const BACKEND_DESKTOP_UPDATE_URL: &str = "https://chatgpt.com/backend-api/wham/app/appcast";
+46:    "https://persistent.oaistatic.com/maxcode-app-prod/windows-store-update.json";
+222:                if desktop_update_display_url.starts_with("https://chatgpt.com/") {
+399:            "https://github.com/RavaniRoshan/maxcode-engine/releases"
+696:            "https://github.com/RavaniRoshan/maxcode-engine/releases"
+703:            "https://github.com/RavaniRoshan/maxcode-engine/releases"
+710:            "https://github.com/RavaniRoshan/maxcode-engine/releases"
+
+$ grep -n HOMEBREW_CASK_API_URL: &str maxcode-rs/tui/src/updates.rs
+61:const HOMEBREW_CASK_API_URL: &str = "https://formulae.brew.sh/api/cask/maxcode.json";
+
+$ grep -n LATEST_RELEASE_URL: &str maxcode-rs/tui/src/updates.rs
+62:const LATEST_RELEASE_URL: &str = "https://api.github.com/repos/RavaniRoshan/maxcode-engine/releases/latest";
+
+$ grep -n PACKAGE_URL: &str maxcode-rs/tui/src/npm_registry.rs
+5:pub(crate) const PACKAGE_URL: &str = "https://registry.npmjs.org/@openai%2fmaxcode";
+
+$ grep -n tarball maxcode-rs/tui/src/npm_registry.rs
+21:    tarball: Option<String>,
+54:    let has_tarball = dist
+55:        .tarball
+57:        .is_some_and(|tarball| !tarball.is_empty());
+58:    if !has_tarball {
+59:        anyhow::bail!("npm package version {version} is missing dist.tarball");
+79:                "tarball": format!("https://registry.npmjs.org/@openai/maxcode/-/maxcode-{version}.tgz"),
+
+## Provider defaults
+$ grep -n CHATGPT_MAXCODE_BASE_URL: &str maxcode-rs/model-provider-info/src/lib.rs
+82:pub const CHATGPT_MAXCODE_BASE_URL: &str = "https://chatgpt.com/backend-api/maxcode";
+
+$ grep -n OPENAI_PROVIDER_NAME: &str maxcode-rs/model-provider-info/src/lib.rs
+79:const OPENAI_PROVIDER_NAME: &str = "OpenAI";
+
+$ grep -n unwrap_or_else(|| "openai" maxcode-rs/core/src/config/mod.rs
+4007:            .unwrap_or_else(|| "openai".to_string());
+
+$ grep -n OPENAI_REALTIME_API_BASE_URL maxcode-rs/maxcode-api/src/endpoint/realtime_websocket/methods.rs
+63:const OPENAI_REALTIME_API_BASE_URL: &str = "https://api.openai.com/v1";
+1004:            webrtc_sideband_base_url: OPENAI_REALTIME_API_BASE_URL.to_string(),
+
+$ grep -n base_url.starts_with("https://chatgpt.com") maxcode-rs/backend-client/src/client.rs
+231:        if (base_url.starts_with("https://chatgpt.com")
+
+## Login and identity endpoints
+$ grep -n AGENT_IDENTITY_JWT_ISSUER\|AGENT_IDENTITY_AUTHAPI_BASE_URL\|"https://chatgpt.com" maxcode-rs/agent-identity/src/lib.rs
+41:const AGENT_IDENTITY_JWT_ISSUER: &str = "https://chatgpt.com/maxcode-backend/agent-identity";
+43:const PROD_AGENT_IDENTITY_AUTHAPI_BASE_URL: &str = "https://auth.openai.com/api/accounts";
+44:const STAGING_AGENT_IDENTITY_AUTHAPI_BASE_URL: &str = "https://auth.api.openai.org/api/accounts";
+58:            "https://chatgpt.com"
+85:            Self::Production => PROD_AGENT_IDENTITY_AUTHAPI_BASE_URL,
+86:            Self::Staging => STAGING_AGENT_IDENTITY_AUTHAPI_BASE_URL,
+284:    validation.set_issuer(&[AGENT_IDENTITY_JWT_ISSUER]);
+646:            "iss": AGENT_IDENTITY_JWT_ISSUER,
+664:                iss: AGENT_IDENTITY_JWT_ISSUER.to_string(),
+682:            "iss": AGENT_IDENTITY_JWT_ISSUER,
+702:            "iss": AGENT_IDENTITY_JWT_ISSUER,
+724:            iss: AGENT_IDENTITY_JWT_ISSUER.to_string(),
+756:            iss: AGENT_IDENTITY_JWT_ISSUER.to_string(),
+781:                "iss": AGENT_IDENTITY_JWT_ISSUER,
+
+## Remote control
+$ grep -n websocket_url: "wss://chatgpt.com maxcode-rs/app-server-transport/src/transport/remote_control/protocol.rs
+303:                websocket_url: "wss://chatgpt.com/backend-api/wham/remote/control/server"
+
+## MCP integrations
+$ grep -n api.githubcopilot.com maxcode-rs/maxcode-mcp/src/connection_manager/startup.rs
+104:        && url == "https://api.githubcopilot.com/mcp/"
+
+$ grep -n gov.chatgpt.com maxcode-rs/maxcode-mcp/src/mcp/mod.rs
+383:    if [CHATGPT_MAXCODE_BASE_URL, "https://gov.chatgpt.com"]
+
+$ grep -n FRAME_CSP maxcode-rs/tui/src/inline_visualization/viewer.rs
+16:const FRAME_CSP: &str = "default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data:; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'";
+68:        "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta name=\"referrer\" content=\"no-referrer\"><meta http-equiv=\"Content-Security-Policy\" content=\"{FRAME_CSP}\"><title>{escaped_title}</title><style>{VIEWER_STYLESHEET}\nhtml>body{{padding:0}}</style></head><body>{runtime}</body></html>"
+74:    let shell_csp = FRAME_CSP.replace("frame-src 'none'", "frame-src 'self'");
+
+$ grep -n "https://mcp.mercadopago.com/mcp" maxcode-rs/rmcp-client/src/oauth/issuer_binding.rs
+53:                    "https://mcp.mercadopago.com/mcp",
+
+## Announcement URL value (maxcode-rs/tui/src/tooltips.rs)
+16	const ANNOUNCEMENT_TIP_URL: &str =
+17	    "https://raw.githubusercontent.com/openai/maxcode/main/announcement_tip.toml";
+18	/// The upstream announcement feed points at OpenAI's repository. The fork has
+
+## Build-time network: git dependencies
+$ grep -n -A6 "[patch.crates-io]" maxcode-rs/Cargo.toml
+663:[patch.crates-io]
+664-# Uncomment to debug local changes.
+665-# ratatui = { path = "../../ratatui" }
+666-crossterm = { git = "https://github.com/openai-oss-forks/crossterm", rev = "ed1cdab335221515706178d68495bba2aed1924f" }
+667-tokio-tungstenite = { git = "https://github.com/openai-oss-forks/tokio-tungstenite", rev = "0e5b2d73aa18dd9f0a50ee9ff199d5aef7594186" }
+668-tungstenite = { git = "https://github.com/openai-oss-forks/tungstenite-rs", rev = "4fffad30fe373adbdcffab9545e9e9bf4f2fc19f" }
+669-
+
+$ grep -c .source = "git+. maxcode-rs/Cargo.lock
+11
+
+$ grep -o "https://github.com/[^\"]*" maxcode-rs/Cargo.lock | sort -u
+https://github.com/dzbarsky/rules_rust?rev=b56cbaa8465e74127f1ea216f813cd377295ad81#b56cbaa8465e74127f1ea216f813cd377295ad81
+https://github.com/helix-editor/nucleo.git?rev=4253de9faabb4e5c6d81d946a5e35a90f87347ee#4253de9faabb4e5c6d81d946a5e35a90f87347ee
+https://github.com/hyperium/h3?rev=e07e69412876f7e26f026bd75a48b2704d8c8283#e07e69412876f7e26f026bd75a48b2704d8c8283
+https://github.com/microsoft/mxc?rev=b21120168d70befe12356411423266bfef168446#b21120168d70befe12356411423266bfef168446
+https://github.com/modelcontextprotocol/rust-sdk?rev=98a54789b80110ad210495c4ad845c89e1980471#98a54789b80110ad210495c4ad845c89e1980471
+https://github.com/openai-oss-forks/crossterm?rev=ed1cdab335221515706178d68495bba2aed1924f#ed1cdab335221515706178d68495bba2aed1924f
+https://github.com/openai-oss-forks/tokio-tungstenite?rev=0e5b2d73aa18dd9f0a50ee9ff199d5aef7594186#0e5b2d73aa18dd9f0a50ee9ff199d5aef7594186
+https://github.com/openai-oss-forks/tungstenite-rs?rev=4fffad30fe373adbdcffab9545e9e9bf4f2fc19f#4fffad30fe373adbdcffab9545e9e9bf4f2fc19f
+https://github.com/rust-lang/crates.io-index
+
+## Rebranded upstream service paths (mechanical codex -> maxcode replacement)
+$ grep -n "backend-api/maxcode\"" maxcode-rs/model-provider-info/src/lib.rs
+82:pub const CHATGPT_MAXCODE_BASE_URL: &str = "https://chatgpt.com/backend-api/maxcode";
+658:                    .ends_with("/backend-api/maxcode")
+$ grep -n "maxcode/analytics-events/events" maxcode-rs/analytics/src/client.rs
+154:            url: format!("{base_url}/maxcode/analytics-events/events"),
+$ grep -n "cask/maxcode.json" maxcode-rs/cli/src/doctor/updates.rs
+37:const HOMEBREW_CASK_API_URL: &str = "https://formulae.brew.sh/api/cask/maxcode.json";
+$ grep -n "npmjs.org/@openai" maxcode-rs/tui/src/npm_registry.rs
+5:pub(crate) const PACKAGE_URL: &str = "https://registry.npmjs.org/@openai%2fmaxcode";
+79:                "tarball": format!("https://registry.npmjs.org/@openai/maxcode/-/maxcode-{version}.tgz"),
+$ grep -n "raw.githubusercontent.com/openai/maxcode" maxcode-rs/tui/src/tooltips.rs
+17:    "https://raw.githubusercontent.com/openai/maxcode/main/announcement_tip.toml";
+$ grep -n "maxcode-app-prod" maxcode-rs/cli/src/doctor/updates.rs
+39:const DESKTOP_UPDATE_URL: &str = "https://persistent.oaistatic.com/maxcode-app-prod/appcast-x64.xml";
+41:const DESKTOP_UPDATE_URL: &str = "https://persistent.oaistatic.com/maxcode-app-prod/appcast.xml";
+46:    "https://persistent.oaistatic.com/maxcode-app-prod/windows-store-update.json";
+
+## Default OpenAI provider base selection (maxcode-rs/model-provider-info/src/lib.rs)
+$ grep -n "CHATGPT_MAXCODE_BASE_URL$" maxcode-rs/model-provider-info/src/lib.rs | head -3
+443:            CHATGPT_MAXCODE_BASE_URL
+$ grep -n "\"https://api.openai.com/v1\"" maxcode-rs/model-provider-info/src/lib.rs
+445:            "https://api.openai.com/v1"
+
+## Default provider id (maxcode-rs/core/src/config/mod.rs)
+$ sed -n "4005,4008p" maxcode-rs/core/src/config/mod.rs
+4008005	            .or(model_provider)
+4008006	            .or(cfg.model_provider)
+4008007	            .unwrap_or_else(|| "openai".to_string());
+4008	        let model_provider = model_providers
