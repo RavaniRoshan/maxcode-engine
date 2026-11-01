@@ -1,0 +1,130 @@
+# Upstream provenance evidence
+# Captured 2026-11-01T12:07:09Z on Linux 6.6.87.2-microsoft-standard-WSL2 x86_64
+# Temp clone (not retained): $(mktemp -d)/codex
+
+$ git clone --depth 1 --branch rust-v0.165.0 https://github.com/openai/codex.git <tmp>/codex
+clone exit=0
+
+$ git -C <tmp>/codex rev-parse HEAD
+360319d8dee62d87e2d59fc0c21805d79519cfed
+$ git -C <tmp>/codex rev-parse HEAD^{tree}
+307e4fa207fe563a11f3f7af09cee6fccd2d8376
+$ git -C <tmp>/codex rev-parse --is-shallow-repository
+true
+
+$ git ls-remote https://github.com/openai/codex.git refs/tags/rust-v0.165.0 refs/tags/rust-v0.165.0^{}
+e374836b2728d9b7aa981c2902649e640a2edaa8	refs/tags/rust-v0.165.0
+360319d8dee62d87e2d59fc0c21805d79519cfed	refs/tags/rust-v0.165.0^{}
+
+$ git -C <tmp>/codex ls-files | wc -l
+9507
+$ ls <tmp>/codex/.github/workflows | wc -l
+31
+$ ls <tmp>/codex/.github/workflows
+Dockerfile.bazel
+README.md
+bazel.yml
+blob-size-policy.yml
+blocking-ci.yml
+cargo-deny.yml
+cla.yml
+close-stale-contributor-prs.yml
+codespell.yml
+issue-deduplicator.yml
+issue-labeler.yml
+issue-translator.yml
+postmerge-ci.yml
+python-runtime-build.yml
+python-runtime-release.yml
+python-sdk-build.yml
+python-sdk-cli-release.yml
+python-sdk-release.yml
+r2-release.yml
+repo-checks.yml
+rust-ci-full-nextest-platform.yml
+rust-ci-full.yml
+rust-ci.yml
+rust-release-argument-comment-lint.yml
+rust-release-provisioned-macos.yml
+rust-release-windows.yml
+rust-release.yml
+rusty-v8-release.yml
+sdk.yml
+v8-canary.yml
+zstd
+
+$ git -C <tmp>/codex grep -l SPDX-License-Identifier -- codex-rs | wc -l
+14
+$ git -C <tmp>/codex grep -l "Copyright.*OpenAI" -- codex-rs | wc -l
+0
+$ git grep -l SPDX-License-Identifier -- maxcode-rs | wc -l
+14
+$ git grep -l "Copyright.*OpenAI" -- maxcode-rs | wc -l
+0
+
+$ sha256sum <tmp>/codex/LICENSE LICENSE <tmp>/codex/NOTICE NOTICE
+d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc  LICENSE
+9d71575ecfd9a843fc1677b0efb08053c6ba9fd686a0de1a6f5382fd3c220915  NOTICE
+d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc  LICENSE
+4395cb339bd771b31496b89f3986b29a996021fe0be45a60135100f71dcfc88a  NOTICE
+
+$ git ls-tree -r --name-only 0a10958 | wc -l   # fork tree at the audit commit
+8974
+$ git ls-tree -r --name-only HEAD | wc -l      # fork tree including audit files
+8985
+
+# Derivation of the counts in CHANGES.md from the committed docs/upstream-diff.tsv
+# Captured 2026-11-01T12:07:25Z
+# Rule: a diff line starting with R is a rename; A an addition; D a deletion; M a modification.
+# Rule for low-similarity moves: an A path under maxcode-rs/ is a move when the same path with
+# the first two components' "maxcode" replaced by "codex" appears as a D path.
+
+$ awk -F"\t" counting by status over docs/upstream-diff.tsv
+R=8759 (R100=3840, R050-R098=4919) A=199 D=732 M=2 total=9692
+
+$ python3 pairing check (see docs/CHANGES-CAVEAT or the script in this log header)
+A total            = 199
+A path-paired moves= 186
+A genuinely new    = 13
+D total            = 732
+D true removals    = 546
+Genuinely new paths:
+  maxcode-rs/app-server-protocol/schema/typescript/v2/MaxcodeErrorInfo.ts
+  maxcode-rs/cli/e2e_benches/maxcode_help.rs
+  maxcode-rs/cli/src/doctor/snapshots/maxcode__doctor__background__tests__configured_updater.snap
+  maxcode-rs/cli/src/snapshots/maxcode__tests__unsupported_worktree_commands.snap
+  maxcode-rs/cli/src/snapshots/maxcode_cli__login__storage_tests__login_default_filter_records_sanitized_storage_fallback.snap
+  maxcode-rs/core/src/context/world_state/snapshots/maxcode_core__context__world_state__tools__tests__snapshots_namespace_omission.snap
+  maxcode-rs/tui/src/app/tests/snapshots/maxcode_tui__app__tests__background_exit_tests__remote_disconnect_exit.snap
+  maxcode-rs/tui/src/bottom_pane/snapshots/maxcode_tui__bottom_pane__feedback_view__tests__feedback_success_employee.snap
+  maxcode-rs/tui/src/chatwidget/realtime/snapshots/maxcode_tui__chatwidget__realtime__tests__recording_controls_tests__voice_meters_do_not_sample_again_on_early_redraws.snap
+  maxcode-rs/tui/src/snapshots/maxcode_tui__app__agents_overview__tests__agents_daemon_started.snap
+  maxcode-rs/tui/src/snapshots/maxcode_tui__keymap_setup__tests__keymap_debug_view_initial.snap
+  maxcode-rs/tui/src/snapshots/maxcode_tui__markdown_render__markdown_render_tests__file_link_keeps_descriptive_label_and_target.snap
+  maxcode-rs/tui/src/snapshots/maxcode_tui__tooltips__tests__desktop_app_tip_windows.snap
+
+# Line delta, re-derived against the audit commit 0a10958
+# Captured 2026-11-01T12:08:30Z
+# The first attempt used a bare SHA as the fetch refspec and failed (exit=128);
+# the fork branch was fetched by refspec instead. The failure is kept here so the
+# log is a record of what was actually run.
+
+$ git -C <tmp>/codex fetch --quiet /home/shiva/projects/maxcode-engine refs/heads/master:refs/fork/master; echo exit=$?
+exit=0
+$ git -C <tmp>/codex cat-file -t 0a10958
+commit
+$ git -C <tmp>/codex diff --shortstat -M -l0 360319d8dee62d87e2d59fc0c21805d79519cfed 0a10958
+ 9692 files changed, 92828 insertions(+), 206210 deletions(-)
+$ git -C <tmp>/codex diff --name-status -M -l0 360319d8dee62d87e2d59fc0c21805d79519cfed 0a10958 | wc -l
+9692
+$ wc -l docs/upstream-diff.tsv
+9692
+
+# Rename-path sub-count, derived from docs/upstream-diff.tsv
+# Rule: strip the top-level directory ("codex-rs/" from the old path,
+# "maxcode-rs/" from the new path) and compare the remainder. No crate-name
+# normalisation, so a renamed crate directory counts as a changed path below the
+# root. An earlier attempt normalised "maxcode" to "codex" in the first two
+# components and produced 1,496; that rule is not the one used in CHANGES.md.
+renames whose path below the top level differs: 1645
+renames whose path below the top level is identical: 7114

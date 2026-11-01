@@ -9,8 +9,10 @@ Pinned upstream: OpenAI Codex `rust-v0.165.0`, commit
 lines outside pure renames and the mechanical rebrand.**
 
 The initial rebrand is the baseline, not a precedent. It changed 9,692 paths:
-8,759 renames, 553 true removals, 20 true additions, and 2 modifications. A
-future sync must not grow that delta by more than 500 functional lines.
+8,759 renames, 546 true removals, 186 low-similarity moves, 13 true additions,
+and 2 modifications. A future sync must not grow that delta by more than 500
+functional lines. The counts are derived in [`CHANGES.md`](../CHANGES.md) and
+[`docs/upstream-verify.log`](upstream-verify.log).
 
 “Pure renames and the mechanical rebrand” means:
 

@@ -4,7 +4,12 @@ Fork: `maxcode-engine`
 Upstream: OpenAI Codex `rust-v0.165.0`, commit
 `360319d8dee62d87e2d59fc0c21805d79519cfed`
 Fork HEAD at audit: `0a109582cc02eeba10134e005b0cfc1d6ffae7f9`
-Date: 2026-10-31
+Date: 2026-10-31; counts re-derived 2026-11-01
+
+Counts and file totals below are re-derived from the committed
+[`docs/upstream-diff.tsv`](docs/upstream-diff.tsv) and the upstream clone recorded
+in [`docs/upstream-verify.log`](docs/upstream-verify.log). That log also records
+the clone, the tag-to-commit resolution, the tree hash, and the license hashes.
 
 This report covers the fork tree at the audit commit. Files added by the audit
 itself (`docs/`, `.github/workflows/release.yml`, `AUDIT.md`, `UPSTREAM.md`,
@@ -34,19 +39,27 @@ counts and the non-rename changes.
 | — of which renames with content edits (`R050`–`R098`) | 4,919 |
 | — of which changed the path below `codex-rs/` | 1,645 |
 | Additions reported by Git | 199 |
-| — low-similarity moves paired by path (`maxcode-rs/X` ← `codex-rs/X`) | 179 |
-| — genuinely new files | 20 |
+| — low-similarity moves paired by path (`maxcode-rs/X` ← `codex-rs/X`) | 186 |
+| — genuinely new files | 13 |
 | Removals reported by Git | 732 |
-| — low-similarity move sources paired by path | 179 |
-| — true removals | 553 |
+| — low-similarity move sources paired by path | 186 |
+| — true removals | 546 |
 | Modifications | 2 |
 | **Total name-status entries** | **9,692** |
 
-File counts: upstream 9,507 tracked files; fork 8,974; net **-533**.
+The move pairing rule is mechanical: an `A` path is a move when the same path,
+with `maxcode` replaced by `codex` in its first two components, appears as a `D`
+path. [`docs/upstream-verify.log`](docs/upstream-verify.log) contains the script's
+output. An earlier pass of this report used a looser pairing and reported 179 / 20;
+the reproducible rule above is authoritative.
 
-Line delta from `git diff --shortstat -M`: **92,828 insertions, 206,210
-deletions**. This includes the mechanical rebrand inside moved files. It is not
-the size of a functional patch.
+File counts: upstream 9,507 tracked files; fork 8,974 at the audit commit
+`0a10958`; net **-533**.
+
+Line delta from `git diff --shortstat -M -l0 360319d8 <audit-commit>`: **92,828
+insertions, 206,210 deletions**, reproduced in
+[`docs/upstream-verify.log`](docs/upstream-verify.log). This includes the
+mechanical rebrand inside moved files. It is not the size of a functional patch.
 
 ## Renames
 
@@ -63,10 +76,10 @@ R100	codex-rs/core/src/client.rs	maxcode-rs/core/src/client.rs
 R095	codex-rs/cli/src/main.rs	maxcode-rs/cli/src/main.rs
 ```
 
-## Genuinely new files (20)
+## Genuinely new files (13)
 
-These have no path-paired deletion; most are renamed snapshots or new crate
-manifests whose names changed more than the rename threshold allows.
+These have no path-paired deletion under the rule above. Most are renamed
+snapshots whose filenames changed with the rebrand, plus one renamed schema type.
 
 ```text
 maxcode-rs/app-server-protocol/schema/typescript/v2/MaxcodeErrorInfo.ts
@@ -75,13 +88,6 @@ maxcode-rs/cli/src/doctor/snapshots/maxcode__doctor__background__tests__configur
 maxcode-rs/cli/src/snapshots/maxcode__tests__unsupported_worktree_commands.snap
 maxcode-rs/cli/src/snapshots/maxcode_cli__login__storage_tests__login_default_filter_records_sanitized_storage_fallback.snap
 maxcode-rs/core/src/context/world_state/snapshots/maxcode_core__context__world_state__tools__tests__snapshots_namespace_omission.snap
-maxcode-rs/maxcode-api/BUILD.bazel
-maxcode-rs/maxcode-backend-openapi-models/BUILD.bazel
-maxcode-rs/maxcode-client/BUILD.bazel
-maxcode-rs/maxcode-experimental-api-macros/BUILD.bazel
-maxcode-rs/maxcode-home/BUILD.bazel
-maxcode-rs/maxcode-home/src/lib.rs
-maxcode-rs/maxcode-mcp/BUILD.bazel
 maxcode-rs/tui/src/app/tests/snapshots/maxcode_tui__app__tests__background_exit_tests__remote_disconnect_exit.snap
 maxcode-rs/tui/src/bottom_pane/snapshots/maxcode_tui__bottom_pane__feedback_view__tests__feedback_success_employee.snap
 maxcode-rs/tui/src/chatwidget/realtime/snapshots/maxcode_tui__chatwidget__realtime__tests__recording_controls_tests__voice_meters_do_not_sample_again_on_early_redraws.snap
@@ -91,13 +97,16 @@ maxcode-rs/tui/src/snapshots/maxcode_tui__markdown_render__markdown_render_tests
 maxcode-rs/tui/src/snapshots/maxcode_tui__tooltips__tests__desktop_app_tip_windows.snap
 ```
 
-The remaining 179 additions are low-similarity moves. They are paired by path
-in `docs/upstream-diff.tsv` and counted separately above.
+The remaining 186 additions are low-similarity moves. They are paired by path
+in `docs/upstream-diff.tsv` and counted separately above. The six
+`BUILD.bazel` files and `maxcode-home/src/lib.rs` that an earlier pass listed
+here do have paired deletions (`codex-rs/<crate>/BUILD.bazel` and
+`codex-rs/codex-home/src/lib.rs`), so they are moves, not additions.
 
-## True removals (553)
+## True removals (546)
 
 Every removed path is in `docs/upstream-diff.tsv` (lines starting with `D` minus
-the 179 path-paired moves). The removals by top-level directory are:
+the 186 path-paired moves). The removals by top-level directory are:
 
 | Directory | Files removed |
 |---|---:|
@@ -105,14 +114,14 @@ the 179 path-paired moves). The removals by top-level directory are:
 | `.github/` | 124 |
 | `third_party/` | 71 |
 | `scripts/` | 58 |
-| `codex-rs/` (files with no `maxcode-rs` counterpart) | 38 |
 | `patches/` | 36 |
+| `codex-rs/` (files with no `maxcode-rs` counterpart) | 31 |
 | `tools/` | 31 |
 | `bazel/` | 28 |
+| root files | 17 |
 | `docs/` | 15 |
 | `codex-cli/` | 7 |
 | `.vscode/` | 3 |
-| root files | 17 |
 
 The root removals are `BUILD.bazel`, `CHANGELOG.md`, `MODULE.bazel`,
 `MODULE.bazel.lock`, `SECURITY.md`, `announcement_tip.toml`, `defs.bzl`,
@@ -140,6 +149,8 @@ the fork's `maxcode-rs` has the same 14. See
 
 Git rename detection is similarity-based. A file whose rename also changes most
 of its content can be reported as `A` + `D` rather than `R`. This report
-separates those 179 path-paired moves so the true addition/removal counts are
-not inflated. The raw `docs/upstream-diff.tsv` preserves Git's mechanical
-output; the summary applies the path-pair correction.
+separates those 186 path-paired moves so the true addition/removal counts are
+not inflated. The rule is stated under [Counts](#counts), and
+[`docs/upstream-verify.log`](docs/upstream-verify.log) shows its output. The raw
+`docs/upstream-diff.tsv` preserves Git's mechanical output; the summary applies
+the path-pair correction.

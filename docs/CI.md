@@ -32,7 +32,9 @@ of this task.
 
 ## Upstream workflows, removed in the rebrand
 
-The upstream tag ships a large `.github/workflows` tree; the fork removed all of
+The upstream tag ships 28 workflow files in `.github/workflows`, plus
+`Dockerfile.bazel`, `README.md`, and a `zstd/` directory (31 entries total; listed
+in [`docs/upstream-verify.log`](upstream-verify.log)). The fork removed all of
 it during the initial rebrand. The YAML is not in this repository, but GitHub
 still lists the last runs, which gives real durations for what used to happen on
 every Dependabot PR:

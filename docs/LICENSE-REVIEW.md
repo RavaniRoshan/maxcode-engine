@@ -1,7 +1,10 @@
 # License review notes
 
-Date: 2026-10-31
+Date: 2026-10-31; checked against the tree 2026-11-01
 Status: **flags for lawyer review, not legal conclusions**
+
+Provenance evidence for every count below: [`docs/upstream-verify.log`](upstream-verify.log)
+(upstream clone, tag resolution, tree hash, license hashes, diff derivation).
 
 ## What changed
 
@@ -14,16 +17,18 @@ Status: **flags for lawyer review, not legal conclusions**
 - Rust source license headers: **none changed**. Upstream `codex-rs` has 0
   `Copyright ... OpenAI` headers and 14 `SPDX-License-Identifier` headers; fork
   `maxcode-rs` has the same 0 and 14.
-- 553 upstream files were removed. `LICENSE` and `NOTICE` were not among them.
+- 546 upstream files were removed. `LICENSE` and `NOTICE` were not among them.
 
-Verification:
+Verification (all four commands and their output are in
+[`docs/upstream-verify.log`](upstream-verify.log)):
 
 ```bash
-git -C /tmp/maxcode-engine-upstream grep -l "SPDX-License-Identifier" \
-  360319d8dee62d87e2d59fc0c21805d79519cfed -- codex-rs | wc -l   # 14
-git grep -l "SPDX-License-Identifier" -- maxcode-rs | wc -l       # 14
-git -C /tmp/maxcode-engine-upstream grep -l "Copyright.*OpenAI" \
-  360319d8dee62d87e2d59fc0c21805d79519cfed -- codex-rs | wc -l   # 0
+UP=$(mktemp -d)/codex   # shallow clone of rust-v0.165.0
+git -C "$UP" grep -l "SPDX-License-Identifier" -- codex-rs | wc -l   # 14
+git grep -l "SPDX-License-Identifier" -- maxcode-rs | wc -l          # 14
+git -C "$UP" grep -l "Copyright.*OpenAI" -- codex-rs | wc -l         # 0
+git grep -l "Copyright.*OpenAI" -- maxcode-rs | wc -l                # 0
+sha256sum "$UP/LICENSE" LICENSE                                     # identical
 ```
 
 ## Files whose license-bearing text changed
@@ -42,8 +47,8 @@ headers is empty.
    `Copyright 2026 maxcode contributors` and a section 4(b) modification
    statement. Confirm the wording, whether a legal entity should replace
    “maxcode contributors”, and whether the statement is sufficiently prominent.
-2. **Removed third-party trees.** `third_party/voice/` (39 files),
-   `third_party/v8/` (19 files), and `patches/` (36 files) were removed. Confirm
+2. **Removed third-party trees.** `third_party/voice/` (46 files),
+   `third_party/v8/` (22 files), and `patches/` (36 files) were removed. Confirm
    that no retained code or binary requires those notices, and that removing the
    files does not remove a notice for code still distributed.
 3. **Embedded third-party text.** `maxcode-rs/worktree/tests/worktree.rs`
@@ -79,9 +84,10 @@ headers is empty.
 11. **Help and documentation links.** `maxcode-rs/tui/src/history_cell/notices.rs`
     links to `help.openai.com`, `openai.com`, and ChatGPT documentation. Confirm
     that retaining these third-party links is acceptable.
-12. **Placeholder project URLs.** `maxcode-rs/tui/src/model_migration.rs` uses
-    `https://www.maxcode.com/...`, which appears to be a renamed placeholder.
-    Confirm the correct project URL or remove it. (Branding step replaces it.)
+12. **Project URLs.** `maxcode-rs/tui/src/model_migration.rs:470,493,522` used the
+    renamed placeholder `https://www.maxcode.com/models/...`; it now points at
+    `https://github.com/RavaniRoshan/maxcode-engine`. Confirm that this is the
+    intended public project URL.
 13. **Git attribution.** The fork's attribution trailer/URL was changed from
     OpenAI-owned addresses to a project address. Confirm the new wording and
     that the `.invalid` email cannot be mistaken for a working contact.
