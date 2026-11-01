@@ -1,0 +1,133 @@
+# CI evidence, captured 2026-11-01T12:03:31Z
+
+$ ls -la .github .github/workflows
+.github:
+total 12
+drwxr-xr-x  3 shiva shiva 4096 Oct 31 16:05 .
+drwxr-xr-x 10 shiva shiva 4096 Nov  1 11:59 ..
+drwxr-xr-x  2 shiva shiva 4096 Oct 31 16:05 workflows
+
+.github/workflows:
+total 12
+drwxr-xr-x 2 shiva shiva 4096 Oct 31 16:05 .
+drwxr-xr-x 3 shiva shiva 4096 Oct 31 16:05 ..
+-rw-r--r-- 1 shiva shiva 2671 Oct 31 16:05 release.yml
+
+$ ls .github/dependabot.yml .github/dependabot.yaml
+ls: cannot access '.github/dependabot.yml': No such file or directory
+ls: cannot access '.github/dependabot.yaml': No such file or directory
+
+$ gh workflow list
+Release	active	402927180
+Dependabot Updates	active	401477029
+
+$ gh api repos/RavaniRoshan/maxcode-engine/actions/workflows --jq ...
+Release	.github/workflows/release.yml	active
+Dependabot Updates	dynamic/dependabot/dependabot-updates	active
+
+$ git tag | wc -l
+0
+
+$ gh pr list --state open
+
+$ gh pr list --state closed --limit 20
+10	Bump quick-xml from 0.41.0 to 0.42.0 in /codex-rs	dependabot/cargo/codex-rs/quick-xml-0.42.0	CLOSED	2026-10-30T07:38:19Z
+9	Bump webbrowser from 1.2.4 to 1.2.5 in /codex-rs	dependabot/cargo/codex-rs/webbrowser-1.2.5	CLOSED	2026-10-30T07:37:43Z
+8	Bump opentelemetry-appender-tracing from 0.31.1 to 0.33.1 in /codex-rs	dependabot/cargo/codex-rs/opentelemetry-appender-tracing-0.33.1	CLOSED	2026-10-30T07:37:04Z
+7	Bump dirs from 6.0.0 to 7.0.0 in /codex-rs	dependabot/cargo/codex-rs/dirs-7.0.0	CLOSED	2026-10-30T07:36:27Z
+6	Bump protoc-bin-vendored from 3.2.0 to 3.3.0 in /codex-rs	dependabot/cargo/codex-rs/protoc-bin-vendored-3.3.0	CLOSED	2026-10-30T07:35:47Z
+5	Bump taiki-e/install-action from 2.62.49 to 2.87.31	dependabot/github_actions/taiki-e/install-action-2.87.31	CLOSED	2026-10-30T07:24:27Z
+4	Bump actions/cache/save from 5.0.4 to 6.1.0	dependabot/github_actions/actions/cache/save-6.1.0	CLOSED	2026-10-30T07:24:16Z
+3	Bump actions/upload-artifact from 7.0.0 to 7.0.2	dependabot/github_actions/actions/upload-artifact-7.0.2	CLOSED	2026-10-30T07:24:08Z
+2	Bump pnpm/action-setup from a8198c4bff370c8506180b035930dea56dbd5288 to fc06bc1257f339d1d5d8b3a19a8cae5388b55320	dependabot/github_actions/pnpm/action-setup-fc06bc1257f339d1d5d8b3a19a8cae5388b55320	CLOSED	2026-10-30T07:24:02Z
+1	Bump codespell-project/codespell-problem-matcher from 1.1.0 to 1.2.0	dependabot/github_actions/codespell-project/codespell-problem-matcher-1.2.0	CLOSED	2026-10-30T07:23:58Z
+
+$ gh run list --limit 100
+completed	failure	Bump quick-xml from 0.41.0 to 0.42.0 in /codex-rs	v8-canary	dependabot/cargo/codex-rs/quick-xml-0.42.0	pull_request	41021312449	6h19m18s	2026-10-30T07:38:25Z
+completed	failure	Bump quick-xml from 0.41.0 to 0.42.0 in /codex-rs	blocking-ci	dependabot/cargo/codex-rs/quick-xml-0.42.0	pull_request	41021312295	3h47m23s	2026-10-30T07:38:25Z
+completed	skipped	Bump quick-xml from 0.41.0 to 0.42.0 in /codex-rs	CLA Assistant	dependabot/cargo/codex-rs/quick-xml-0.42.0	pull_request_target	41021310682	1s	2026-10-30T07:38:24Z
+completed	failure	Bump webbrowser from 1.2.4 to 1.2.5 in /codex-rs	blocking-ci	dependabot/cargo/codex-rs/webbrowser-1.2.5	pull_request	41021249279	4h5m48s	2026-10-30T07:37:48Z
+completed	success	Bump webbrowser from 1.2.4 to 1.2.5 in /codex-rs	v8-canary	dependabot/cargo/codex-rs/webbrowser-1.2.5	pull_request	41021249272	2h43m9s	2026-10-30T07:37:48Z
+completed	skipped	Bump webbrowser from 1.2.4 to 1.2.5 in /codex-rs	CLA Assistant	dependabot/cargo/codex-rs/webbrowser-1.2.5	pull_request_target	41021245924	2s	2026-10-30T07:37:46Z
+completed	failure	Bump opentelemetry-appender-tracing from 0.31.1 to 0.33.1 in /codex-rs	v8-canary	dependabot/cargo/codex-rs/opentelemetry-appender-tracing-0.33.1	pull_request	41021183718	5h38m43s	2026-10-30T07:37:09Z
+completed	failure	Bump opentelemetry-appender-tracing from 0.31.1 to 0.33.1 in /codex-rs	blocking-ci	dependabot/cargo/codex-rs/opentelemetry-appender-tracing-0.33.1	pull_request	41021183707	3h19m19s	2026-10-30T07:37:09Z
+completed	skipped	Bump opentelemetry-appender-tracing from 0.31.1 to 0.33.1 in /codex-rs	CLA Assistant	dependabot/cargo/codex-rs/opentelemetry-appender-tracing-0.33.1	pull_request_target	41021181312	1s	2026-10-30T07:37:08Z
+completed	failure	Bump dirs from 6.0.0 to 7.0.0 in /codex-rs	blocking-ci	dependabot/cargo/codex-rs/dirs-7.0.0	pull_request	41021121596	3h36m28s	2026-10-30T07:36:32Z
+completed	failure	Bump dirs from 6.0.0 to 7.0.0 in /codex-rs	v8-canary	dependabot/cargo/codex-rs/dirs-7.0.0	pull_request	41021121531	6h8m21s	2026-10-30T07:36:32Z
+completed	skipped	Bump dirs from 6.0.0 to 7.0.0 in /codex-rs	CLA Assistant	dependabot/cargo/codex-rs/dirs-7.0.0	pull_request_target	41021119841	1s	2026-10-30T07:36:31Z
+completed	success	Bump protoc-bin-vendored from 3.2.0 to 3.3.0 in /codex-rs	v8-canary	dependabot/cargo/codex-rs/protoc-bin-vendored-3.3.0	pull_request	41021052813	2h38m41s	2026-10-30T07:35:52Z
+completed	failure	Bump protoc-bin-vendored from 3.2.0 to 3.3.0 in /codex-rs	blocking-ci	dependabot/cargo/codex-rs/protoc-bin-vendored-3.3.0	pull_request	41021052809	3h51m56s	2026-10-30T07:35:52Z
+completed	skipped	Bump protoc-bin-vendored from 3.2.0 to 3.3.0 in /codex-rs	CLA Assistant	dependabot/cargo/codex-rs/protoc-bin-vendored-3.3.0	pull_request_target	41021050689	1s	2026-10-30T07:35:51Z
+completed	failure	Bump actions/cache/save from 5.0.4 to 6.1.0	blocking-ci	dependabot/github_actions/actions/cache/save-6.1.0	pull_request	41020037690	3h43m38s	2026-10-30T07:25:49Z
+completed	success	Bump actions/cache/save from 5.0.4 to 6.1.0	v8-canary	dependabot/github_actions/actions/cache/save-6.1.0	pull_request	41020037683	17s	2026-10-30T07:25:49Z
+completed	failure	Bump taiki-e/install-action from 2.62.49 to 2.87.31	blocking-ci	dependabot/github_actions/taiki-e/install-action-2.87.31	pull_request	41019907548	3h40m23s	2026-10-30T07:24:33Z
+completed	failure	Bump taiki-e/install-action from 2.62.49 to 2.87.31	v8-canary	dependabot/github_actions/taiki-e/install-action-2.87.31	pull_request	41019907495	5h51m38s	2026-10-30T07:24:33Z
+completed	skipped	Bump taiki-e/install-action from 2.62.49 to 2.87.31	CLA Assistant	dependabot/github_actions/taiki-e/install-action-2.87.31	pull_request_target	41019903291	1s	2026-10-30T07:24:31Z
+completed	skipped	Bump actions/cache/save from 5.0.4 to 6.1.0	CLA Assistant	dependabot/github_actions/actions/cache/save-6.1.0	pull_request_target	41019884422	5s	2026-10-30T07:24:20Z
+completed	failure	Bump actions/upload-artifact from 7.0.0 to 7.0.2	blocking-ci	dependabot/github_actions/actions/upload-artifact-7.0.2	pull_request	41019874629	3h22m4s	2026-10-30T07:24:14Z
+completed	failure	Bump actions/upload-artifact from 7.0.0 to 7.0.2	v8-canary	dependabot/github_actions/actions/upload-artifact-7.0.2	pull_request	41019874562	3h4m26s	2026-10-30T07:24:14Z
+completed	skipped	Bump actions/upload-artifact from 7.0.0 to 7.0.2	CLA Assistant	dependabot/github_actions/actions/upload-artifact-7.0.2	pull_request_target	41019871809	6s	2026-10-30T07:24:12Z
+completed	success	Bump pnpm/action-setup from a8198c4bff370c8506180b035930dea56dbd5288 to fc06bc1257f339d1d5d8b3a19a8cae5388b55320	v8-canary	dependabot/github_actions/pnpm/action-setup-fc06bc1257f339d1d5d8b3a19a8cae5388b55320	pull_request	41019862447	16s	2026-10-30T07:24:07Z
+completed	failure	Bump pnpm/action-setup from a8198c4bff370c8506180b035930dea56dbd5288 to fc06bc1257f339d1d5d8b3a19a8cae5388b55320	blocking-ci	dependabot/github_actions/pnpm/action-setup-fc06bc1257f339d1d5d8b3a19a8cae5388b55320	pull_request	41019862446	2h58m59s	2026-10-30T07:24:07Z
+completed	skipped	Bump pnpm/action-setup from a8198c4bff370c8506180b035930dea56dbd5288 to fc06bc1257f339d1d5d8b3a19a8cae5388b55320	CLA Assistant	dependabot/github_actions/pnpm/action-setup-fc06bc1257f339d1d5d8b3a19a8cae5388b55320	pull_request_target	41019859021	1s	2026-10-30T07:24:05Z
+completed	failure	Bump codespell-project/codespell-problem-matcher from 1.1.0 to 1.2.0	blocking-ci	dependabot/github_actions/codespell-project/codespell-problem-matcher-1.2.0	pull_request	41019854901	1h32m21s	2026-10-30T07:24:03Z
+completed	success	Bump codespell-project/codespell-problem-matcher from 1.1.0 to 1.2.0	v8-canary	dependabot/github_actions/codespell-project/codespell-problem-matcher-1.2.0	pull_request	41019854859	20s	2026-10-30T07:24:03Z
+completed	skipped	Bump codespell-project/codespell-problem-matcher from 1.1.0 to 1.2.0	CLA Assistant	dependabot/github_actions/codespell-project/codespell-problem-matcher-1.2.0	pull_request_target	41019852394	1s	2026-10-30T07:24:02Z
+completed	failure	bun in /.github/actions/codex - Update #1665123770	Dependabot Updates	master	dynamic	41019757324	49s	2026-10-30T07:23:08Z
+completed	success	github_actions in /. - Update #1665123831	Dependabot Updates	master	dynamic	41019757190	2m55s	2026-10-30T07:23:08Z
+completed	success	rust_toolchain in /codex-rs - Update #1665123858	Dependabot Updates	master	dynamic	41019757137	35s	2026-10-30T07:23:08Z
+completed	cancelled	cargo in /codex-rs, /codex-rs/* - Update #1665123795	Dependabot Updates	master	dynamic	41019757102	55m8s	2026-10-30T07:23:08Z
+completed	failure	docker in /codex-cli - Update #1665123809	Dependabot Updates	master	dynamic	41019757059	41s	2026-10-30T07:23:08Z
+
+$ gh run list --limit 100 --json name,conclusion,createdAt,updatedAt,headBranch --jq ... (durations derived from updatedAt-createdAt)
+v8-canary	failure	2026-10-30T07:38:25Z	2026-10-30T13:57:43Z
+blocking-ci	failure	2026-10-30T07:38:25Z	2026-10-30T11:25:48Z
+CLA Assistant	skipped	2026-10-30T07:38:24Z	2026-10-30T07:38:25Z
+blocking-ci	failure	2026-10-30T07:37:48Z	2026-10-30T11:43:36Z
+v8-canary	success	2026-10-30T07:37:48Z	2026-10-30T10:20:57Z
+CLA Assistant	skipped	2026-10-30T07:37:46Z	2026-10-30T07:37:48Z
+v8-canary	failure	2026-10-30T07:37:09Z	2026-10-30T13:15:52Z
+blocking-ci	failure	2026-10-30T07:37:09Z	2026-10-30T10:56:28Z
+CLA Assistant	skipped	2026-10-30T07:37:08Z	2026-10-30T07:37:09Z
+blocking-ci	failure	2026-10-30T07:36:32Z	2026-10-30T11:13:00Z
+v8-canary	failure	2026-10-30T07:36:32Z	2026-10-30T13:44:53Z
+CLA Assistant	skipped	2026-10-30T07:36:31Z	2026-10-30T07:36:32Z
+v8-canary	success	2026-10-30T07:35:52Z	2026-10-30T10:14:33Z
+blocking-ci	failure	2026-10-30T07:35:52Z	2026-10-30T11:27:48Z
+CLA Assistant	skipped	2026-10-30T07:35:51Z	2026-10-30T07:35:52Z
+blocking-ci	failure	2026-10-30T07:25:49Z	2026-10-30T11:09:27Z
+v8-canary	success	2026-10-30T07:25:49Z	2026-10-30T07:26:06Z
+blocking-ci	failure	2026-10-30T07:24:33Z	2026-10-30T11:04:56Z
+v8-canary	failure	2026-10-30T07:24:33Z	2026-10-30T13:16:11Z
+CLA Assistant	skipped	2026-10-30T07:24:31Z	2026-10-30T07:24:32Z
+CLA Assistant	skipped	2026-10-30T07:24:20Z	2026-10-30T07:24:25Z
+blocking-ci	failure	2026-10-30T07:24:14Z	2026-10-30T10:46:18Z
+v8-canary	failure	2026-10-30T07:24:14Z	2026-10-30T10:28:40Z
+CLA Assistant	skipped	2026-10-30T07:24:12Z	2026-10-30T07:24:18Z
+v8-canary	success	2026-10-30T07:24:07Z	2026-10-30T07:24:23Z
+blocking-ci	failure	2026-10-30T07:24:07Z	2026-10-30T10:23:06Z
+CLA Assistant	skipped	2026-10-30T07:24:05Z	2026-10-30T07:24:06Z
+blocking-ci	failure	2026-10-30T07:24:03Z	2026-10-30T08:56:24Z
+v8-canary	success	2026-10-30T07:24:03Z	2026-10-30T07:24:23Z
+CLA Assistant	skipped	2026-10-30T07:24:02Z	2026-10-30T07:24:03Z
+bun in /.github/actions/codex - Update #1665123770	failure	2026-10-30T07:23:08Z	2026-10-30T07:23:57Z
+github_actions in /. - Update #1665123831	success	2026-10-30T07:23:08Z	2026-10-30T07:26:03Z
+rust_toolchain in /codex-rs - Update #1665123858	success	2026-10-30T07:23:08Z	2026-10-30T07:23:43Z
+cargo in /codex-rs, /codex-rs/* - Update #1665123795	cancelled	2026-10-30T07:23:08Z	2026-10-30T08:18:16Z
+docker in /codex-cli - Update #1665123809	failure	2026-10-30T07:23:08Z	2026-10-30T07:23:49Z
+
+# Derived summary from the `gh run list --limit 100` table above.
+# Command: awk -F'\t' on lines starting with "completed",
+#          grouping by $4 (workflow) and parsing $8 (duration).
+workflow           runs  failed_or_cancelled  min_duration  max_duration
+CLA Assistant      10    0                    1s            6s
+blocking-ci        10    10                   1h32m21s      4h5m48s
+Dependabot Updates 5     3                    35s           55m8s
+v8-canary          10    5                    16s           6h19m18s
+# The v8-canary 16s and 20s runs above are the GitHub-Actions-only Dependabot
+# updates, which touch no Rust code.
+
+# Observations from the table above:
+# - No run has the name "Release": the release workflow has never run (git tag count is 0).
+# - blocking-ci and v8-canary ran only in response to Dependabot pull_request events.
+# - CLA Assistant ran as pull_request_target and every run was "skipped" in 1-6 seconds.
